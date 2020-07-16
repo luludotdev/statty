@@ -14,7 +14,7 @@ type Response = Except<responseInterface<any, any>, 'data'>
 export function useStats(): Response & { stats: ITransformedData | undefined }
 export function useStats(initialData: ITransformedData): Response & { stats: ITransformedData }
 export function useStats(initialData?: ITransformedData): Response & { stats: ITransformedData | undefined } {
-  const resp = useSWR('/stats', fetchStats, { initialData })
+  const resp = useSWR('/stats', fetchStats, { initialData, refreshInterval: 1000 * 15 })
   return {...resp, stats: resp.data }
 }
 
