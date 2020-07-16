@@ -20,7 +20,7 @@ export enum Status {
   Unknown = 'unknown',
 }
 
-interface IPluginReponse {
+export interface IPluginReponse {
   /**
    * Latency to target (in millis)
    */
@@ -32,7 +32,7 @@ interface IPluginReponse {
   status: Status
 }
 
-interface IPlugin {
+export interface IPlugin {
   type: string
   target: string
 

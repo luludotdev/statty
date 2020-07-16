@@ -9,6 +9,7 @@
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
+    "downlevelIteration": true,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "esModuleInterop": true,
@@ -19,6 +20,8 @@
     "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
+      "~managers": ["lib/managers"],
+      "~managers/*": ["lib/managers/*"],
       "~plugins": ["lib/plugins"],
       "~plugins/*": ["lib/plugins/*"]
     }
