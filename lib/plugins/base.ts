@@ -15,6 +15,7 @@ export interface IPluginReponse {
 export interface IPlugin {
   type: string
   target: string
+  limit: number
 
   id: string
   description: () => string

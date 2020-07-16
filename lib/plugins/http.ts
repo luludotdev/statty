@@ -38,6 +38,7 @@ export const httpFactory = createFactory<IHttpOptions>('http', options => ({
   type: 'http',
   id: options.id,
   target: options.target,
+  limit: options.latencyLimit ?? DEFAULT_LATENCY_LIMIT,
   description: () => options.description ?? options.target,
 
   run: async () => {

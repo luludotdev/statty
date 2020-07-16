@@ -7,6 +7,7 @@ export const pingFactory = createFactory('ping', options => ({
   type: 'ping',
   id: options.id,
   target: options.target,
+  limit: options.latencyLimit ?? DEFAULT_LATENCY_LIMIT,
   description: () => options.description ?? `ping \`${options.target}\``,
 
   run: async () => {

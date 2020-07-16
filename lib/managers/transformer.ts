@@ -6,6 +6,7 @@ export interface ITransformedData {
   description: string
 
   status: Status
+  limit: number
   data: Array<[number, number]>
 }
 
@@ -19,6 +20,7 @@ export const transformData: (
     id: manager.plugin.id,
     description: manager.plugin.description(),
     status,
+    limit: manager.plugin.limit,
     data: data.map(([time, { latency }]) => [time, latency]),
   }
 }
