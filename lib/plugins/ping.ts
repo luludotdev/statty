@@ -1,6 +1,7 @@
 import ping from 'pingman'
 import { HostType, resolveHost } from '~utils/ip'
-import { createFactory, DEFAULT_LATENCY_LIMIT, Status } from './base'
+import { createFactory, DEFAULT_LATENCY_LIMIT } from './base'
+import { Status } from './types'
 
 export const pingFactory = createFactory('ping', options => ({
   type: 'ping',

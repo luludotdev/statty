@@ -1,6 +1,7 @@
 import { performance } from 'perf_hooks'
 import { name as pkgName, version as pkgVersion } from '~utils/pkg'
-import { createFactory, DEFAULT_LATENCY_LIMIT, Status } from './base'
+import { createFactory, DEFAULT_LATENCY_LIMIT } from './base'
+import { Status } from './types'
 
 interface IHttpOptions {
   statusCodes?: IStatusCode[]

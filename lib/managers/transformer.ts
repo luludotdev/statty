@@ -1,4 +1,4 @@
-import { Status } from '~plugins/base'
+import { Status } from '~plugins/types'
 import { IManager } from './manager'
 
 export interface ITransformedData {
