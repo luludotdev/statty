@@ -68,10 +68,12 @@ export interface IPluginOptions {
   latencyLimit?: number
 }
 
+export const IS_FACTORY = Symbol('isFactory')
 export const DEFAULT_LATENCY_LIMIT = 1000
 
 export interface IPluginFactory<T = Record<string, unknown>> {
   type: string
+  isFactory: symbol
 
   (options: IPluginOptions & T): IPlugin
 }
@@ -80,5 +82,5 @@ export const createFactory: <T>(
   type: string,
   factory: (options: IPluginOptions & T) => IPlugin
 ) => IPluginFactory<T> = (type, factory) => {
-  return Object.assign(factory, { type })
+  return Object.assign(factory, { type, isFactory: IS_FACTORY })
 }
