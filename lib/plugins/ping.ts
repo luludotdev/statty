@@ -5,8 +5,8 @@ import { createFactory, DEFAULT_LATENCY_LIMIT, Status } from './base'
 export const pingFactory = createFactory('ping', options => ({
   type: 'ping',
   id: options.id,
-  description: options.description,
   target: options.target,
+  description: () => options.description ?? `ping \`${options.target}\``,
 
   run: async () => {
     const hostType = resolveHost(options.target)

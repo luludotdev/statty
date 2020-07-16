@@ -37,7 +37,7 @@ export interface IPlugin {
   target: string
 
   id: string
-  description: string | undefined
+  description: () => string
 
   run: () => IPluginReponse | Promise<IPluginReponse>
 }

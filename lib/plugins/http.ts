@@ -36,8 +36,8 @@ const resolveStatusCode: (status: number, codes: IStatusCode[]) => Status = (
 export const httpFactory = createFactory<IHttpOptions>('http', options => ({
   type: 'http',
   id: options.id,
-  description: options.description,
   target: options.target,
+  description: () => options.description ?? options.target,
 
   run: async () => {
     const userStatusCodes = options.statusCodes ?? []

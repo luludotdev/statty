@@ -3,6 +3,8 @@ import { IManager } from './manager'
 
 export interface ITransformedData {
   id: string
+  description: string
+
   status: Status
   data: Array<[number, number]>
 }
@@ -15,6 +17,7 @@ export const transformData: (
 
   return {
     id: manager.plugin.id,
+    description: manager.plugin.description(),
     status,
     data: data.map(([time, { latency }]) => [time, latency]),
   }
