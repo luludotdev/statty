@@ -34,6 +34,7 @@ const resolveStatusCode: (status: number, codes: IStatusCode[]) => Status = (
 
 export const httpFactory: PluginFactory<IHttpOptions> = options => ({
   type: 'http',
+  id: options.id,
   target: options.target,
 
   run: async () => {
