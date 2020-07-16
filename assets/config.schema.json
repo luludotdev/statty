@@ -1,0 +1,66 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/lolPants/statty/master/assets/config.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "services"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "format": "uri"
+    },
+    "services": {
+      "$id": "#/properties/services",
+      "type": "array",
+      "title": "Service Defintions",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/definitions/service"
+      }
+    }
+  },
+  "definitions": {
+    "service": {
+      "$id": "#/definitions/service",
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "id",
+        "plugin",
+        "target"
+      ],
+      "properties": {
+        "id": {
+          "$id": "#/definitions/service/properties/id",
+          "type": "string"
+        },
+        "plugin": {
+          "$id": "#/definitions/service/properties/plugin",
+          "type": "string",
+          "examples": [
+            "http",
+            "ping"
+          ],
+          "pattern": "^(.+)$"
+        },
+        "target": {
+          "$id": "#/definitions/service/properties/target",
+          "type": "string",
+          "pattern": "^(.+)$"
+        },
+        "description": {
+          "$id": "#/definitions/service/properties/description",
+          "type": "string",
+          "pattern": "^(.+)$"
+        },
+        "latencyLimit": {
+          "$id": "#/definitions/service/properties/latencyLimit",
+          "type": "number",
+          "minimum": 1
+        }
+      }
+    }
+  }
+}
