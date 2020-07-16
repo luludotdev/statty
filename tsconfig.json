@@ -20,6 +20,8 @@
     "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
+      "~api/*": ["pages/api/*"],
+
       "~config": ["lib/config"],
       "~env": ["lib/env"],
       "~loader": ["lib/loader"],
