@@ -53,7 +53,7 @@ export const createManager: (
   }
 
   const _task = schedule(crontab, _readData)
-  void _readData()
+  void _evictOldData()
 
   return {
     _task,
