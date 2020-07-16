@@ -9,9 +9,15 @@ interface IManagerOptions {
   evictTime?: string
 }
 
+type OnData = (key: number, data: IPluginReponse) => any
+type OnEvicted = (key: number) => any
+
 export interface IManager {
   plugin: IPlugin
   data: ManagerData
+
+  onData: (func: OnData) => void
+  onEvicted: (func: OnEvicted) => void
 }
 
 export const createManager: (
@@ -21,6 +27,9 @@ export const createManager: (
   const crontab = options?.crontab ?? '* * * * *'
   const evictTime = ms(options?.evictTime ?? '1h')
 
+  const onDataListeners: OnData[] = []
+  const onEvictedListeners: OnEvicted[] = []
+
   const data: ManagerData = new Map()
   const _evictOldData = async () => {
     const now = Date.now()
@@ -28,6 +37,7 @@ export const createManager: (
 
     for (const key of keys) {
       data.delete(key)
+      onEvictedListeners.forEach(fn => fn(key))
     }
   }
 
@@ -36,6 +46,8 @@ export const createManager: (
     const result = await plugin.run()
 
     data.set(time, result)
+    onDataListeners.forEach(fn => fn(time, result))
+
     await _evictOldData()
   }
 
@@ -46,5 +58,8 @@ export const createManager: (
     _task,
     plugin,
     data,
+
+    onData: func => onDataListeners.push(func),
+    onEvicted: func => onEvictedListeners.push(func),
   }
 }
