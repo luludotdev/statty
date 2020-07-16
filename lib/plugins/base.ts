@@ -61,6 +61,15 @@ export interface IPluginOptions {
 
 export const DEFAULT_LATENCY_LIMIT = 1000
 
-export type PluginFactory<T = Record<string, unknown>> = (
-  options: IPluginOptions & T
-) => IPlugin
+export interface IPluginFactory<T = Record<string, unknown>> {
+  type: string
+
+  (options: IPluginOptions & T): IPlugin
+}
+
+export const createFactory: <T>(
+  type: string,
+  factory: (options: IPluginOptions & T) => IPlugin
+) => IPluginFactory<T> = (type, factory) => {
+  return Object.assign(factory, { type })
+}

@@ -1,5 +1,5 @@
 import { performance } from 'perf_hooks'
-import { DEFAULT_LATENCY_LIMIT, PluginFactory, Status } from './base'
+import { createFactory, DEFAULT_LATENCY_LIMIT, Status } from './base'
 
 interface IHttpOptions {
   statusCodes?: IStatusCode[]
@@ -32,7 +32,7 @@ const resolveStatusCode: (status: number, codes: IStatusCode[]) => Status = (
   return Status.Unknown
 }
 
-export const httpFactory: PluginFactory<IHttpOptions> = options => ({
+export const httpFactory = createFactory<IHttpOptions>('http', options => ({
   type: 'http',
   id: options.id,
   target: options.target,
@@ -57,4 +57,4 @@ export const httpFactory: PluginFactory<IHttpOptions> = options => ({
       return { status: Status.Unreachable, latency: -1 }
     }
   },
-})
+}))
