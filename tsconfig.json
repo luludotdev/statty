@@ -25,6 +25,7 @@
       "~managers/*": ["lib/managers/*"],
       "~plugins": ["lib/plugins"],
       "~plugins/*": ["lib/plugins/*"],
+      "~redis": ["lib/redis"],
       "~utils/*": ["lib/utils/*"]
     }
   },
