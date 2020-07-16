@@ -58,7 +58,7 @@ export const httpFactory = createFactory<IHttpOptions>('http', options => ({
           ? Status.Degraded
           : resolveStatusCode(resp.status, statusCodes)
 
-      return { status, latency }
+      return { status, latency: Math.round(latency) }
     } catch {
       return { status: Status.Unreachable, latency: -1 }
     }
