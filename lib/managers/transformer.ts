@@ -1,7 +1,7 @@
 import { Status } from '~plugins/base'
 import { IManager } from './manager'
 
-interface ITransformedData {
+export interface ITransformedData {
   id: string
   status: Status
   data: Array<[number, number]>
