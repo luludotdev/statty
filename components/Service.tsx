@@ -1,9 +1,3 @@
-import {
-  faCheckCircle,
-  faExclamationCircle,
-  faQuestionCircle,
-  faTimesCircle,
-} from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import clsx from 'clsx'
 import { FunctionComponent } from 'react'
@@ -32,12 +26,12 @@ export const Service: FunctionComponent<ITransformedData> = ({
 
   const icon =
     status === Status.Operational
-      ? faCheckCircle
+      ? 'check-circle'
       : Status.Degraded
-      ? faExclamationCircle
+      ? 'exclamation-circle'
       : Status.Unreachable
-      ? faTimesCircle
-      : faQuestionCircle
+      ? 'times-circle'
+      : 'question-circle'
 
   const latency = data[0][1]
 
