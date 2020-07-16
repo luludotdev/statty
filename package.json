@@ -9,13 +9,15 @@
     "lint": "xo"
   },
   "dependencies": {
+    "ajv": "^6.12.3",
     "ip6addr": "^0.2.3",
     "ms": "^2.1.2",
     "next": "9.4.4",
     "node-cron": "^2.0.3",
     "pingman": "^1.0.6",
     "react": "16.13.1",
-    "react-dom": "16.13.1"
+    "react-dom": "16.13.1",
+    "yaml": "^1.10.0"
   },
   "devDependencies": {
     "@types/ip6addr": "^0.2.0",
