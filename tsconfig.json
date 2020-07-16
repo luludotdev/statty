@@ -16,7 +16,12 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve"
+    "jsx": "preserve",
+    "baseUrl": ".",
+    "paths": {
+      "~plugins": ["lib/plugins"],
+      "~plugins/*": ["lib/plugins/*"]
+    }
   },
   "exclude": [
     "node_modules"
