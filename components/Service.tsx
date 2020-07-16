@@ -10,6 +10,7 @@ import { FunctionComponent } from 'react'
 import Linkify from 'react-linkify'
 import { ITransformedData } from '~managers'
 import { Status } from '~plugins/types'
+import { Graph } from './Graph'
 
 import '~styles/service.styl'
 
@@ -17,6 +18,7 @@ export const Service: FunctionComponent<ITransformedData> = ({
   id,
   description,
   status,
+  limit,
   data,
 }) => {
   const title =
@@ -56,6 +58,8 @@ export const Service: FunctionComponent<ITransformedData> = ({
       <p className='description'>
         <Linkify>{description}</Linkify>
       </p>
+
+      <Graph limit={limit} data={data} />
     </div>
   )
 }
