@@ -9,7 +9,7 @@ interface IManagerOptions {
   evictTime?: string
 }
 
-interface IManager {
+export interface IManager {
   plugin: IPlugin
   data: ManagerData
 }
