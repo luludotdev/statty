@@ -51,6 +51,7 @@ export interface IPluginOptions {
 
 export const IS_FACTORY = Symbol('isFactory')
 export const DEFAULT_LATENCY_LIMIT = 1000
+export const UNKNOWN_LATENCY = 0
 
 export interface IPluginFactory<T = Record<string, unknown>> {
   type: string

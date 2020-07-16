@@ -1,6 +1,6 @@
 import { performance } from 'perf_hooks'
 import { name as pkgName, version as pkgVersion } from '~utils/pkg'
-import { createFactory, DEFAULT_LATENCY_LIMIT } from './base'
+import { createFactory, DEFAULT_LATENCY_LIMIT, UNKNOWN_LATENCY } from './base'
 import { Status } from './types'
 
 interface IHttpOptions {
@@ -62,7 +62,7 @@ export const httpFactory = createFactory<IHttpOptions>('http', options => ({
 
       return { status, latency: Math.round(latency) }
     } catch {
-      return { status: Status.Unreachable, latency: -1 }
+      return { status: Status.Unreachable, latency: UNKNOWN_LATENCY }
     }
   },
 }))
