@@ -59,5 +59,3 @@ export const getManagers: () => Promise<Map<string, IManager>> = async () => {
   await loadConfig()
   return managers
 }
-
-export type { IInstance } from './validateConfig'
