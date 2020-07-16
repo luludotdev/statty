@@ -30,6 +30,7 @@
     "eslint-plugin-react": "^7.20.3",
     "eslint-plugin-react-hooks": "^4.0.8",
     "prettier": "^2.0.5",
+    "read-pkg-up": "^7.0.1",
     "typescript": "^3.9.6",
     "xo": "^0.32.1"
   }

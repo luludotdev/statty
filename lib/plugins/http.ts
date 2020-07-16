@@ -1,4 +1,5 @@
 import { performance } from 'perf_hooks'
+import { name as pkgName, version as pkgVersion } from '~utils/pkg'
 import { createFactory, DEFAULT_LATENCY_LIMIT, Status } from './base'
 
 interface IHttpOptions {
@@ -44,9 +45,13 @@ export const httpFactory = createFactory<IHttpOptions>('http', options => ({
 
     try {
       const before = performance.now()
-      const resp = await fetch(options.target)
-      const after = performance.now()
+      const resp = await fetch(options.target, {
+        headers: {
+          'user-agent': `${pkgName}/${pkgVersion}`,
+        },
+      })
 
+      const after = performance.now()
       const latency = after - before
       const status =
         latency > (options.latencyLimit ?? DEFAULT_LATENCY_LIMIT)
