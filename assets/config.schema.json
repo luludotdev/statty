@@ -24,6 +24,22 @@
         "name": {
           "$id": "#/properties/instance/properties/name",
           "type": "string"
+        },
+        "crontab": {
+          "$id": "#/properties/instance/properties/crontab",
+          "type": "string",
+          "examples": [
+            "* * * * *"
+          ]
+        },
+        "evictTime": {
+          "$id": "#/properties/instance/properties/evictTime",
+          "type": "string",
+          "examples": [
+            "1h",
+            "2h",
+            "30m"
+          ]
         }
       }
     },

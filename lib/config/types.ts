@@ -5,6 +5,9 @@ export interface IConfig {
 
 export interface IInstance {
   name: string
+
+  crontab?: string
+  evictTime?: string
 }
 
 export interface IService {

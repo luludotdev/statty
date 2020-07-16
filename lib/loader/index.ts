@@ -35,7 +35,11 @@ export const loadConfig: () => Promise<void> = async () => {
     ).map(([key, value]) => [Number.parseInt(key, 10), JSON.parse(value)])
 
     const plugin = factory(service)
-    const manager = createManager(plugin, { initialData })
+    const manager = createManager(plugin, {
+      initialData,
+      crontab: config.instance.crontab,
+      evictTime: config.instance.evictTime,
+    })
 
     manager.onEvicted(async key => redis.hdel(redisKey, key.toString()))
     manager.onData(async (key, data) =>
