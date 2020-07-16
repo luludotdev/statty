@@ -9,6 +9,7 @@
     "lint": "xo"
   },
   "dependencies": {
+    "ip6addr": "^0.2.3",
     "ms": "^2.1.2",
     "next": "9.4.4",
     "node-cron": "^2.0.3",
@@ -16,6 +17,7 @@
     "react-dom": "16.13.1"
   },
   "devDependencies": {
+    "@types/ip6addr": "^0.2.0",
     "@types/ms": "^0.7.31",
     "@types/node": "^14.0.23",
     "@types/node-cron": "^2.0.3",

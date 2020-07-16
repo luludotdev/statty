@@ -23,7 +23,8 @@
       "~managers": ["lib/managers"],
       "~managers/*": ["lib/managers/*"],
       "~plugins": ["lib/plugins"],
-      "~plugins/*": ["lib/plugins/*"]
+      "~plugins/*": ["lib/plugins/*"],
+      "~utils/*": ["lib/utils/*"]
     }
   },
   "exclude": [
