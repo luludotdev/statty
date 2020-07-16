@@ -1,9 +1,8 @@
+import { IInstance, config as readConfig } from '~config'
 import { createManager, IManager } from '~managers'
 import { IPluginReponse } from '~plugins'
 import { awaitRedis, redis } from '~redis'
-import { readConfig } from './readConfig'
 import { resolvePlugin } from './resolvePlugin'
-import { IInstance, validateConfig } from './validateConfig'
 
 let setup = false
 let instance: IInstance | undefined
@@ -13,10 +12,10 @@ export const loadConfig: () => Promise<void> = async () => {
   if (setup === true) return
   setup = true
 
-  await awaitRedis()
-  const object = await readConfig()
-  const config = validateConfig(object)
+  const config = await readConfig()
   instance = config.instance
+
+  await awaitRedis()
 
   for (const service of config.services) {
     if (managers.has(service.id)) {

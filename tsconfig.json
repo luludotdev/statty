@@ -20,6 +20,7 @@
     "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
+      "~config": ["lib/config"],
       "~env": ["lib/env"],
       "~managers": ["lib/managers"],
       "~managers/*": ["lib/managers/*"],
