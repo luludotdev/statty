@@ -1,4 +1,5 @@
 import { createManager, IManager } from '~managers'
+import { redis } from '~redis'
 import { readConfig } from './readConfig'
 import { resolvePlugin } from './resolvePlugin'
 import { IInstance, validateConfig } from './validateConfig'
@@ -25,8 +26,14 @@ export const loadConfig: () => Promise<void> = async () => {
       throw new Error(`Unknown plugin type: \`${service.plugin}\``)
     }
 
+    const redisKey = `${service.plugin}:${service.id}`
     const plugin = factory(service)
     const manager = createManager(plugin)
+
+    manager.onEvicted(async key => redis.hdel(redisKey, key.toString()))
+    manager.onData(async (key, data) =>
+      redis.hset(redisKey, key.toString(), JSON.stringify(data))
+    )
 
     managers.set(service.id, manager)
   }
