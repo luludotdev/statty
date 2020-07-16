@@ -25,6 +25,6 @@ export const pingFactory = createFactory('ping', options => ({
         ? Status.Degraded
         : Status.Operational
 
-    return { status, latency }
+    return { status, latency: Math.round(latency) }
   },
 }))
