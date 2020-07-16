@@ -5,6 +5,7 @@ import { IPlugin, IPluginReponse } from '~plugins'
 type ManagerData = Map<number, IPluginReponse>
 
 interface IManagerOptions {
+  initialData?: Array<[number, IPluginReponse]>
   crontab?: string
   evictTime?: string
 }
@@ -30,7 +31,7 @@ export const createManager: (
   const onDataListeners: OnData[] = []
   const onEvictedListeners: OnEvicted[] = []
 
-  const data: ManagerData = new Map()
+  const data: ManagerData = new Map(options?.initialData)
   const _evictOldData = async () => {
     const now = Date.now()
     const keys = [...data.keys()].filter(key => now - key >= evictTime)

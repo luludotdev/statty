@@ -1,5 +1,6 @@
 import { createManager, IManager } from '~managers'
-import { redis } from '~redis'
+import { IPluginReponse } from '~plugins'
+import { awaitRedis, redis } from '~redis'
 import { readConfig } from './readConfig'
 import { resolvePlugin } from './resolvePlugin'
 import { IInstance, validateConfig } from './validateConfig'
@@ -12,6 +13,7 @@ export const loadConfig: () => Promise<void> = async () => {
   if (setup === true) return
   setup = true
 
+  await awaitRedis()
   const object = await readConfig()
   const config = validateConfig(object)
   instance = config.instance
@@ -27,8 +29,14 @@ export const loadConfig: () => Promise<void> = async () => {
     }
 
     const redisKey = `${service.plugin}:${service.id}`
+    // eslint-disable-next-line no-await-in-loop
+    const rawData = await redis.hgetall(redisKey)
+    const initialData: Array<[number, IPluginReponse]> = Object.entries(
+      rawData
+    ).map(([key, value]) => [Number.parseInt(key, 10), JSON.parse(value)])
+
     const plugin = factory(service)
-    const manager = createManager(plugin)
+    const manager = createManager(plugin, { initialData })
 
     manager.onEvicted(async key => redis.hdel(redisKey, key.toString()))
     manager.onData(async (key, data) =>
