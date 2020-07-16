@@ -4,12 +4,28 @@
   "type": "object",
   "additionalProperties": false,
   "required": [
+    "instance",
     "services"
   ],
   "properties": {
     "$schema": {
       "type": "string",
       "format": "uri"
+    },
+    "instance": {
+      "$id": "#/properties/instance",
+      "type": "object",
+      "additionalProperties": false,
+      "title": "Instance Configuration",
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "name": {
+          "$id": "#/properties/instance/properties/name",
+          "type": "string"
+        }
+      }
     },
     "services": {
       "$id": "#/properties/services",
