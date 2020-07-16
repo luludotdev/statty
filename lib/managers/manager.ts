@@ -42,13 +42,13 @@ export const createManager: (
   }
 
   const _readData = async () => {
+    await _evictOldData()
+
     const time = Date.now()
     const result = await plugin.run()
 
     data.set(time, result)
     onDataListeners.forEach(fn => fn(time, result))
-
-    await _evictOldData()
   }
 
   const _task = schedule(crontab, _readData)
