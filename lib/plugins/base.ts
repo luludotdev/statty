@@ -34,8 +34,10 @@ export interface IPluginReponse {
 
 export interface IPlugin {
   type: string
-  id: string
   target: string
+
+  id: string
+  description: string | undefined
 
   run: () => IPluginReponse | Promise<IPluginReponse>
 }
@@ -50,6 +52,13 @@ export interface IPluginOptions {
    * Unique Plugin ID
    */
   id: string
+
+  /**
+   * Plugin Description
+   *
+   * Shown on the web client
+   */
+  description?: string
 
   /**
    * Limit for acceptable latency (in millis)
