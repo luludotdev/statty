@@ -1,6 +1,7 @@
 import { GetServerSideProps, NextPage } from 'next'
 import type { IInstance } from '~api/instance'
 import { Meta } from '~components/Meta'
+import { Service } from '~components/Service'
 import { fetchStats, useStats } from '~hooks/useStats'
 import { ITransformedData } from '~managers'
 import { axios } from '~utils/axios'
@@ -21,6 +22,10 @@ const App: NextPage<IProps> = ({ siteName, initialData }) => {
 
       <div className='page'>
         <h1>{siteName}</h1>
+
+        {stats.map(x => (
+          <Service key={x.id} {...x} />
+        ))}
       </div>
     </>
   )

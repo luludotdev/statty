@@ -11,6 +11,8 @@ import Linkify from 'react-linkify'
 import { ITransformedData } from '~managers'
 import { Status } from '~plugins/types'
 
+import '~styles/service.styl'
+
 export const Service: FunctionComponent<ITransformedData> = ({
   id,
   description,
