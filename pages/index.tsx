@@ -5,6 +5,8 @@ import { fetchStats, useStats } from '~hooks/useStats'
 import { ITransformedData } from '~managers'
 import { axios } from '~utils/axios'
 
+import '~styles/page.styl'
+
 interface IProps {
   siteName: string
   initialData: ITransformedData[]
@@ -16,7 +18,10 @@ const App: NextPage<IProps> = ({ siteName, initialData }) => {
   return (
     <>
       <Meta siteName={siteName} />
-      <pre>{JSON.stringify(stats, null, 2)}</pre>
+
+      <div className='page'>
+        <h1>{siteName}</h1>
+      </div>
     </>
   )
 }
