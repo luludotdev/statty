@@ -38,6 +38,17 @@
         "group": "internal"
       }]
     }],
+    "import/extensions": [
+			"error",
+			{
+				"js": "never",
+				"jsx": "never",
+				"json": "always",
+				"svg": "always",
+				"css": "always",
+				"styl": "always"
+			}
+		],
 
     "unicorn/filename-case": 0,
     "unicorn/no-reduce": 0,

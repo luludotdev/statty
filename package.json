@@ -12,6 +12,7 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.30",
     "@fortawesome/free-solid-svg-icons": "^5.14.0",
     "@fortawesome/react-fontawesome": "^0.1.11",
+    "@zeit/next-stylus": "^1.0.1",
     "ajv": "^6.12.3",
     "axios": "^0.19.2",
     "clsx": "^1.1.1",
@@ -24,6 +25,7 @@
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-linkify": "^1.0.0-alpha",
+    "stylus": "^0.54.8",
     "swr": "^0.2.3",
     "type-fest": "^0.16.0",
     "yaml": "^1.10.0"
