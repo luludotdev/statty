@@ -25,6 +25,7 @@
 
       "~config": ["lib/config"],
       "~env": ["lib/env"],
+      "~hooks/*": ["lib/hooks/*"],
       "~loader": ["lib/loader"],
       "~managers": ["lib/managers"],
       "~managers/*": ["lib/managers/*"],
