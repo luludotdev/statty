@@ -7,7 +7,7 @@ import { axios } from '~utils/axios'
 
 interface IProps {
   siteName: string
-  initialData: ITransformedData
+  initialData: ITransformedData[]
 }
 
 const App: NextPage<IProps> = ({ siteName, initialData }) => {
