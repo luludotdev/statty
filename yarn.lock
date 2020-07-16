@@ -5563,6 +5563,11 @@ pify@^4.0.1:
   resolved "https://registry.yarnpkg.com/pify/-/pify-4.0.1.tgz#4b2cd25c50d598735c50292224fd8c6df41e3231"
   integrity sha512-uB80kBFb/tfd68bVleG9T5GGsGPjJrLAUpR5PZIrhBnIaRTQRjqdJSsIKkOP6OAIFbj7GOrcudc5pNjZ+geV2g==
 
+pingman@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/pingman/-/pingman-1.0.6.tgz#cdc3337a7a55d0bad2294cce661e2a459c69f1a4"
+  integrity sha512-Xrs5xRxKiYT6Bgkadcm/OjdSQ/i0cUrdzE2mquBQGg/71vMxBjZ5sZJ0cg4EhzkKvcANMKX7RCXuA+mH8Lkbsw==
+
 pkg-dir@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/pkg-dir/-/pkg-dir-2.0.0.tgz#f6d5d1109e19d63edf428e0bd57e12777615334b"
