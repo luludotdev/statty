@@ -1,5 +1,5 @@
-import { getInstance } from 'lib/loader'
 import { NextApiRequest, NextApiResponse } from 'next'
+import { getInstance } from '~loader'
 
 const instance = async (_: NextApiRequest, resp: NextApiResponse) => {
   const instance = await getInstance()
