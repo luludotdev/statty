@@ -7,10 +7,10 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import clsx from 'clsx'
 import { FunctionComponent } from 'react'
-import Linkify from 'react-linkify'
 import { ITransformedData } from '~managers'
 import { Status } from '~plugins/types'
 import { Graph } from './Graph'
+import { Linkify } from './Linkify'
 
 import '~styles/service.styl'
 
