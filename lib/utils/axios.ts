@@ -3,6 +3,8 @@ import { IS_SERVER } from '~env'
 import { name as pkgName, version as pkgVersion } from '~utils/pkg'
 
 const server: AxiosRequestConfig = {
+  // TODO: Make this more reliable
+  baseURL: 'http://localhost:3000',
   headers: {
     'user-agent': `${pkgName}/${pkgVersion}`,
   },
