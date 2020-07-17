@@ -1,5 +1,5 @@
 import ms from 'ms'
-import { FunctionComponent, useCallback } from 'react'
+import { FunctionComponent, useMemo } from 'react'
 import {
   Area,
   AreaChart,
@@ -27,6 +27,10 @@ export const Graph: FunctionComponent<IProps> = ({ data, limit }) => {
   const transformed = useMemo(() => {
     return data.map(([timestamp, latency]) => ({ timestamp, latency }))
   }, [data])
+
+  if (transformed.length === 0) {
+    return <div className='graph-placeholder' />
+  }
 
   const now = Date.now()
   const formatXTick = (timestamp: number) => {
