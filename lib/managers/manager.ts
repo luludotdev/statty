@@ -54,7 +54,7 @@ export const createManager: (
     data.set(time, result)
     void saveData(plugin, time, result)
 
-    await saveUptime(plugin, result)
+    await saveUptime(plugin, time, result)
     const uptime = await readUptime(plugin)
     if (uptime !== undefined) uptimeRef.uptime = uptime
   }
