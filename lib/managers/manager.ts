@@ -2,15 +2,12 @@ import ms from 'ms'
 import { schedule } from 'node-cron'
 import { IPlugin, IPluginReponse } from '~plugins'
 import { sleep } from '~utils/sleep'
-import { evictData, saveData } from './persistence'
+import { evictData, loadData, saveData } from './persistence'
 import { readUptime, saveUptime } from './uptime'
 
 type ManagerData = Map<number, IPluginReponse>
 
 interface IManagerOptions {
-  initialData?: Array<[number, IPluginReponse]>
-  initialUptime?: number
-
   crontab?: string
   evictTime?: string
   delay?: number
@@ -25,12 +22,15 @@ export interface IManager {
 export const createManager: (
   plugin: IPlugin,
   options?: IManagerOptions
-) => IManager = (plugin, options) => {
+) => Promise<IManager> = async (plugin, options) => {
   const crontab = options?.crontab ?? '* * * * *'
   const evictTime = ms(options?.evictTime ?? '61m')
 
-  const data: ManagerData = new Map(options?.initialData)
-  const uptimeRef = { uptime: options?.initialUptime ?? 0 }
+  const initialData = await loadData(plugin)
+  const initialUptime = await readUptime(plugin)
+
+  const data: ManagerData = new Map(initialData)
+  const uptimeRef = { uptime: initialUptime ?? 0 }
 
   const _evictOldData = async () => {
     const now = Date.now()
@@ -55,7 +55,8 @@ export const createManager: (
     void saveData(plugin, time, result)
 
     await saveUptime(plugin, result)
-    uptimeRef.uptime = await readUptime(plugin)
+    const uptime = await readUptime(plugin)
+    if (uptime !== undefined) uptimeRef.uptime = uptime
   }
 
   const _task = schedule(crontab, _readData)
