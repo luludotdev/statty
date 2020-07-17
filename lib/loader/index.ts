@@ -1,6 +1,6 @@
 import { IInstance, config as readConfig } from '~config'
 import { createManager, IManager } from '~managers'
-import { IPluginReponse } from '~plugins'
+import { IPluginReponse, Status } from '~plugins'
 import { awaitRedis, redis } from '~redis'
 import { resolvePlugin } from './resolvePlugin'
 
@@ -46,10 +46,33 @@ export const loadConfig: () => Promise<void> = async () => {
       delay,
     })
 
-    manager.onEvicted(async key => redis.hdel(redisKey, key.toString()))
-    manager.onData(async (key, data) =>
-      redis.hset(redisKey, key.toString(), JSON.stringify(data))
+    manager.onEvicted(async key =>
+      redis.hdel(`${redisKey}:stats`, key.toString())
     )
+
+    manager.onData(async (key, data) => {
+      void redis.hset(`${redisKey}:stats`, key.toString(), JSON.stringify(data))
+
+      const now = new Date(key)
+      const minute = now.getHours() * 60 + now.getMinutes()
+      const isUp =
+        data.status === Status.Unreachable
+          ? '1'
+          : data.status === Status.Degraded
+          ? '2'
+          : data.status === Status.Operational
+          ? '2'
+          : '0'
+
+      await redis.send_command(
+        'BITFIELD',
+        `${redisKey}:uptime`,
+        'SET',
+        'u2',
+        `#${minute}`,
+        isUp
+      )
+    })
 
     managers.set(service.id, manager)
   }
