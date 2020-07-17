@@ -5,7 +5,8 @@ version: '3'
 
 services:
   statty:
-    image: statty
+    # Using a version tag is a good idea in production
+    image: docker.pkg.github.com/lolpants/statty/statty
     restart: always
     networks:
       - internal
