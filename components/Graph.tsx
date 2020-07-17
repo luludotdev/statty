@@ -24,7 +24,7 @@ interface IProps {
 export const Graph: FunctionComponent<IProps> = ({ data, limit }) => {
   const isSmallScreen = useMediaQuery('(max-width: 500px)')
 
-  const transformed = useCallback(() => {
+  const transformed = useMemo(() => {
     return data.map(([timestamp, latency]) => ({ timestamp, latency }))
   }, [data])
 
@@ -43,7 +43,7 @@ export const Graph: FunctionComponent<IProps> = ({ data, limit }) => {
   return (
     <div className='graph-container'>
       <ResponsiveContainer width='100%' height={175}>
-        <AreaChart data={transformed()}>
+        <AreaChart data={transformed}>
           <XAxis
             dataKey='timestamp'
             tickFormatter={formatXTick}
