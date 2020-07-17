@@ -2,6 +2,8 @@ import ms from 'ms'
 import { schedule } from 'node-cron'
 import { IPlugin, IPluginReponse } from '~plugins'
 import { sleep } from '~utils/sleep'
+import { evictData, saveData } from './persistence'
+import { readUptime, saveUptime } from './uptime'
 
 type ManagerData = Map<number, IPluginReponse>
 
@@ -14,17 +16,10 @@ interface IManagerOptions {
   delay?: number
 }
 
-type OnData = (key: number, data: IPluginReponse) => any
-type OnEvicted = (key: number) => any
-
 export interface IManager {
   plugin: IPlugin
   data: ManagerData
   uptimeRef: { uptime: number }
-
-  setUptime: (uptime: number) => void
-  onData: (func: OnData) => void
-  onEvicted: (func: OnEvicted) => void
 }
 
 export const createManager: (
@@ -33,9 +28,6 @@ export const createManager: (
 ) => IManager = (plugin, options) => {
   const crontab = options?.crontab ?? '* * * * *'
   const evictTime = ms(options?.evictTime ?? '61m')
-
-  const onDataListeners: OnData[] = []
-  const onEvictedListeners: OnEvicted[] = []
 
   const data: ManagerData = new Map(options?.initialData)
   const uptimeRef = { uptime: options?.initialUptime ?? 0 }
@@ -46,7 +38,7 @@ export const createManager: (
 
     for (const key of keys) {
       data.delete(key)
-      onEvictedListeners.forEach(fn => fn(key))
+      void evictData(plugin, key)
     }
   }
 
@@ -60,7 +52,10 @@ export const createManager: (
     const result = await plugin.run()
 
     data.set(time, result)
-    onDataListeners.forEach(fn => fn(time, result))
+    void saveData(plugin, time, result)
+
+    await saveUptime(plugin, result)
+    uptimeRef.uptime = await readUptime(plugin)
   }
 
   const _task = schedule(crontab, _readData)
@@ -70,13 +65,6 @@ export const createManager: (
     _task,
     plugin,
     data,
-
     uptimeRef,
-    setUptime: value => {
-      uptimeRef.uptime = value
-    },
-
-    onData: func => onDataListeners.push(func),
-    onEvicted: func => onEvictedListeners.push(func),
   }
 }
