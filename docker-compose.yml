@@ -1,0 +1,26 @@
+# Example Docker Compose File
+# Please use this as a reference, don't use this verbatim in prod
+
+version: '3'
+
+services:
+  statty:
+    image: statty
+    restart: always
+    networks:
+      - internal
+    depends_on:
+      - redis
+    ports:
+      - 8080:3000
+    volumes:
+      # Mount config inside container
+      - ./config.yaml:/home/node/app/config.yaml:ro
+  redis:
+    image: redis:alpine
+    restart: always
+    networks:
+      - internal
+
+networks:
+  internal:
