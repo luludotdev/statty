@@ -11,8 +11,8 @@ export const saveData: (
   timestamp: number,
   data: IPluginReponse
 ) => Promise<void> = async (plugin, timestamp, data) => {
-  // TODO
-  throw new Error('Not implemented')
+  const key = redisKey(plugin, 'stats')
+  await redis.hset(key, timestamp.toString(), JSON.stringify(data))
 }
 
 export const evictData: (
