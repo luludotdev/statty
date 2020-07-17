@@ -26,7 +26,7 @@ export const createManager: (
   options?: IManagerOptions
 ) => IManager = (plugin, options) => {
   const crontab = options?.crontab ?? '* * * * *'
-  const evictTime = ms(options?.evictTime ?? '1h')
+  const evictTime = ms(options?.evictTime ?? '61m')
 
   const onDataListeners: OnData[] = []
   const onEvictedListeners: OnEvicted[] = []
