@@ -33,7 +33,7 @@ export const Service: FunctionComponent<ITransformedData> = ({
       ? 'times-circle'
       : 'question-circle'
 
-  const latency = data[0][1]
+  const latency: number | undefined = data?.[0]?.[1]
 
   return (
     <div className={clsx('service', `service-${status}`)}>
@@ -45,7 +45,7 @@ export const Service: FunctionComponent<ITransformedData> = ({
         <h2 className='title'>
           {id}
 
-          <span className='information'>{latency}ms</span>
+          <span className='information'>{latency && `${latency}ms`}</span>
         </h2>
       </header>
 
