@@ -22,7 +22,7 @@ export const transformData: (
     description: manager.plugin.description(),
     status,
     limit: manager.plugin.limit,
-    uptime: manager.uptime,
+    uptime: manager.uptimeRef.uptime,
     data: data.map(([time, { latency }]) => [time, latency]),
   }
 }

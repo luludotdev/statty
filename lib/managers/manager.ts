@@ -20,7 +20,7 @@ type OnEvicted = (key: number) => any
 export interface IManager {
   plugin: IPlugin
   data: ManagerData
-  uptime: number
+  uptimeRef: { uptime: number }
 
   setUptime: (uptime: number) => void
   onData: (func: OnData) => void
@@ -38,7 +38,7 @@ export const createManager: (
   const onEvictedListeners: OnEvicted[] = []
 
   const data: ManagerData = new Map(options?.initialData)
-  let uptime = options?.initialUptime ?? 0
+  const uptimeRef = { uptime: options?.initialUptime ?? 0 }
 
   const _evictOldData = async () => {
     const now = Date.now()
@@ -71,9 +71,9 @@ export const createManager: (
     plugin,
     data,
 
-    uptime,
+    uptimeRef,
     setUptime: value => {
-      uptime = value
+      uptimeRef.uptime = value
     },
 
     onData: func => onDataListeners.push(func),
