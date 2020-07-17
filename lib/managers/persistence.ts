@@ -1,4 +1,5 @@
 import { IPlugin, IPluginReponse } from '~plugins'
+import { redis } from '~redis'
 
 export const redisKey: (plugin: IPlugin, key: string) => string = (
   plugin,
@@ -18,6 +19,6 @@ export const evictData: (
   plugin: IPlugin,
   timestamp: number
 ) => Promise<void> = async (plugin, timestamp) => {
-  // TODO
-  throw new Error('Not implemented')
+  const key = redisKey(plugin, 'stats')
+  await redis.hdel(key, timestamp.toString())
 }
