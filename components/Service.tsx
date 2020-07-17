@@ -47,7 +47,9 @@ export const Service: FunctionComponent<ITransformedData> = ({
           {id}
 
           <span className='information'>
-            {latency !== undefined && `${latency}ms`}{' '}
+            <span title='Latency'>
+              {latency !== undefined && `${latency}ms`}
+            </span>{' '}
             <span title='Uptime'>({(uptime * 100).toFixed(0)}%)</span>
           </span>
         </h2>
