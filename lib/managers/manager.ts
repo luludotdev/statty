@@ -1,6 +1,7 @@
 import ms from 'ms'
 import { schedule } from 'node-cron'
 import { IPlugin, IPluginReponse } from '~plugins'
+import { sleep } from '~utils/sleep'
 
 type ManagerData = Map<number, IPluginReponse>
 
@@ -8,6 +9,7 @@ interface IManagerOptions {
   initialData?: Array<[number, IPluginReponse]>
   crontab?: string
   evictTime?: string
+  delay?: number
 }
 
 type OnData = (key: number, data: IPluginReponse) => any
@@ -44,6 +46,9 @@ export const createManager: (
 
   const _readData = async () => {
     await _evictOldData()
+    if (options?.delay !== undefined) {
+      await sleep(options.delay)
+    }
 
     const time = Date.now()
     const result = await plugin.run()

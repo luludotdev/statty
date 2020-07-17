@@ -8,6 +8,7 @@ export interface IInstance {
 
   crontab?: string
   evictTime?: string
+  delayFactor?: number
 }
 
 export interface IService {

@@ -40,6 +40,11 @@
             "2h",
             "30m"
           ]
+        },
+        "delayFactor": {
+          "$id": "#/properties/instance/properties/delayFactor",
+          "type": "number",
+          "minimum": -1
         }
       }
     },
