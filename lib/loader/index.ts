@@ -29,7 +29,7 @@ export const loadConfig: () => Promise<void> = async () => {
 
     const redisKey = `${service.plugin}:${service.id}`
     // eslint-disable-next-line no-await-in-loop
-    const rawData = await redis.hgetall(redisKey)
+    const rawData = await redis.hgetall(`${redisKey}:stats`)
     const initialData: Array<[number, IPluginReponse]> = Object.entries(
       rawData
     ).map(([key, value]) => [Number.parseInt(key, 10), JSON.parse(value)])
