@@ -1,7 +1,8 @@
 import { BitStream } from 'bit-buffer'
 import { IPlugin, IPluginReponse, Status } from '~plugins'
-import { redis } from '~redis'
-import { redisKey } from './persistence'
+import { redis, redisKey } from '~redis'
+
+const REDIS_KEY = 'uptime'
 
 export const saveUptime: (
   plugin: IPlugin,
@@ -19,14 +20,14 @@ export const saveUptime: (
       ? '2'
       : '0'
 
-  const key = redisKey(plugin, 'uptime')
+  const key = redisKey(plugin, REDIS_KEY)
   await redis.send_command('BITFIELD', key, 'SET', 'u2', `#${minute}`, isUp)
 }
 
 export const readUptime: (
   plugin: IPlugin
 ) => Promise<number | undefined> = async plugin => {
-  const key = redisKey(plugin, 'uptime')
+  const key = redisKey(plugin, REDIS_KEY)
   const bytes = await redis.getBuffer(key)
   if (bytes === null) return undefined
 

@@ -1,17 +1,14 @@
 import { IPlugin, IPluginReponse } from '~plugins'
-import { redis } from '~redis'
+import { redis, redisKey } from '~redis'
 
-export const redisKey: (plugin: IPlugin, key: string) => string = (
-  plugin,
-  key
-) => `${plugin.type}:${plugin.id}:${key}`
+const REDIS_KEY = 'stats'
 
 export const saveData: (
   plugin: IPlugin,
   timestamp: number,
   data: IPluginReponse
 ) => Promise<void> = async (plugin, timestamp, data) => {
-  const key = redisKey(plugin, 'stats')
+  const key = redisKey(plugin, REDIS_KEY)
   await redis.hset(key, timestamp.toString(), JSON.stringify(data))
 }
 
@@ -19,14 +16,14 @@ export const evictData: (
   plugin: IPlugin,
   timestamp: number
 ) => Promise<void> = async (plugin, timestamp) => {
-  const key = redisKey(plugin, 'stats')
+  const key = redisKey(plugin, REDIS_KEY)
   await redis.hdel(key, timestamp.toString())
 }
 
 export const loadData: (
   plugin: IPlugin
 ) => Promise<Array<[number, IPluginReponse]>> = async plugin => {
-  const key = redisKey(plugin, 'stats')
+  const key = redisKey(plugin, REDIS_KEY)
   const rawData = await redis.hgetall(key)
 
   const initialData: Array<[number, IPluginReponse]> = Object.entries(
