@@ -9,3 +9,7 @@ This project uses GitHub Actions to run automated docker builds, you can find th
 Statty services are configured using YAML or JSON. A [JSON schema](https://raw.githubusercontent.com/lolPants/statty/master/assets/config.schema.json) has been provided for use in IDEs.
 
 Statty also requires a Redis database for persistence between restarts. This is configured using environment variables. Refer to `.env.example` for documentation.
+
+## 💖 Special Thanks
+* **[Vercel](https://github.com/vercel)** - Creating the Next.js Framework and SWR, as well as many other libraries used in this project.
+* **[Elstat](https://gitdab.com/ashie/elstat)** - Being the inspiration for this project, and proving a solid base for the Statty dashboard.
