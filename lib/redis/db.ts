@@ -1,4 +1,5 @@
 import Redis from 'ioredis'
+import { schedule } from 'node-cron'
 import { REDIS_DB_BASE, REDIS_HOST, REDIS_PASS, REDIS_PORT } from '~env'
 
 export const redis = new Redis({
@@ -11,4 +12,8 @@ export const redis = new Redis({
 redis.on('error', () => {
   console.log('Failed to connect to Redis')
   process.exit(1)
+})
+
+redis.on('ready', () => {
+  schedule('0 */12 * * *', async () => redis.bgrewriteaof())
 })
