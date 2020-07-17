@@ -45,7 +45,9 @@ export const Service: FunctionComponent<ITransformedData> = ({
         <h2 id={id} className='title'>
           {id}
 
-          <span className='information'>{latency && `${latency}ms`}</span>
+          <span className='information'>
+            {latency !== undefined && `${latency}ms`}
+          </span>
         </h2>
       </header>
 
