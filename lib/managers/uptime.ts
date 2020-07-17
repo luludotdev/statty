@@ -10,7 +10,7 @@ export const saveUptime: (
 
 export const readUptime: (
   plugin: IPlugin
-) => Promise<number> = async plugin => {
+) => Promise<number | undefined> = async plugin => {
   // TODO
   throw new Error('Not implemented')
 }
