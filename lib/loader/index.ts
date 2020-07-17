@@ -1,3 +1,4 @@
+import { BitStream } from 'bit-buffer'
 import { IInstance, config as readConfig } from '~config'
 import { createManager, IManager } from '~managers'
 import { IPluginReponse, Status } from '~plugins'
@@ -72,6 +73,11 @@ export const loadConfig: () => Promise<void> = async () => {
         `#${minute}`,
         isUp
       )
+
+      const bytes = await redis.getBuffer(`${redisKey}:uptime`)
+      const uptime = readUptime(bytes)
+
+      manager.setUptime(uptime)
     })
 
     managers.set(service.id, manager)
@@ -86,4 +92,20 @@ export const getInstance: () => Promise<IInstance> = async () => {
 export const getManagers: () => Promise<Map<string, IManager>> = async () => {
   await loadConfig()
   return managers
+}
+
+const readUptime: (buf: Buffer) => number = buf => {
+  let upCount = 0
+  let downCount = 0
+
+  const u8 = Uint8Array.from(buf)
+  const bs = new BitStream(u8.buffer)
+  while (bs.bitsLeft > 0) {
+    const bit = bs.readBits(2, false)
+    if (bit === 2) upCount++
+    if (bit === 1) downCount++
+  }
+
+  const total = upCount + downCount
+  return upCount / total
 }

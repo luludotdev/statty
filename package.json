@@ -15,6 +15,7 @@
     "@lolpants/pingman": "^1.0.6",
     "ajv": "^6.12.3",
     "axios": "^0.19.2",
+    "bit-buffer": "^0.2.4",
     "clsx": "^1.1.1",
     "ioredis": "^4.17.3",
     "ip6addr": "^0.2.3",
