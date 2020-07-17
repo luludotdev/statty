@@ -1,6 +1,6 @@
 import { GetServerSideProps, NextPage } from 'next'
 import type { IInstance } from '~api/instance'
-import { Meta } from '~components/Meta'
+import { AppMeta } from '~components/AppMeta'
 import { Service } from '~components/Service'
 import { Incidents } from '~components/Status'
 import { fetchStats, useStats } from '~hooks/useStats'
@@ -19,7 +19,7 @@ const App: NextPage<IProps> = ({ siteName, initialData }) => {
 
   return (
     <>
-      <Meta siteName={siteName} />
+      <AppMeta siteName={siteName} stats={stats} />
 
       <div className='page'>
         <h1>{siteName}</h1>
