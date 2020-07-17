@@ -23,11 +23,14 @@
       "properties": {
         "name": {
           "$id": "#/properties/instance/properties/name",
-          "type": "string"
+          "type": "string",
+          "title": "Instance Name",
+          "description": "Used on the dashboard."
         },
         "crontab": {
           "$id": "#/properties/instance/properties/crontab",
           "type": "string",
+          "description": "Crontab used to run plugins with. Can have a 6th entry for second-precision.",
           "examples": [
             "* * * * *"
           ]
@@ -35,6 +38,7 @@
         "evictTime": {
           "$id": "#/properties/instance/properties/evictTime",
           "type": "string",
+          "description": "Time after which old datapoints get evicted.\nDefaults to \"61m\".",
           "examples": [
             "1h",
             "2h",
@@ -44,7 +48,8 @@
         "delayFactor": {
           "$id": "#/properties/instance/properties/delayFactor",
           "type": "number",
-          "minimum": -1
+          "minimum": -1,
+          "description": "Add sequential delay to plugin runs (in seconds).\nDefaults to \"2\".\nSet to \"-1\" to disable."
         }
       }
     },
@@ -71,11 +76,14 @@
       "properties": {
         "id": {
           "$id": "#/definitions/service/properties/id",
-          "type": "string"
+          "type": "string",
+          "title": "Service ID",
+          "description": "Unique identifier for this service. Shown as the title on the dashboard."
         },
         "plugin": {
           "$id": "#/definitions/service/properties/plugin",
           "type": "string",
+          "title": "Plugin ID",
           "examples": [
             "http",
             "ping"
@@ -90,12 +98,15 @@
         "description": {
           "$id": "#/definitions/service/properties/description",
           "type": "string",
+          "title": "Optional Description",
+          "description": "Shown on the dashboard. If unset, the plugin will resolve a sensible fallback.",
           "pattern": "^(.+)$"
         },
         "latencyLimit": {
           "$id": "#/definitions/service/properties/latencyLimit",
           "type": "number",
-          "minimum": 1
+          "minimum": 1,
+          "description": "Upper limit for latency (in milliseconds) for \"good\" performance.\nValues exceeding this limit will show as having Degraded Performance."
         }
       }
     }
