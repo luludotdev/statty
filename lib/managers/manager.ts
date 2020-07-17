@@ -7,6 +7,8 @@ type ManagerData = Map<number, IPluginReponse>
 
 interface IManagerOptions {
   initialData?: Array<[number, IPluginReponse]>
+  initialUptime?: number
+
   crontab?: string
   evictTime?: string
   delay?: number
@@ -18,7 +20,9 @@ type OnEvicted = (key: number) => any
 export interface IManager {
   plugin: IPlugin
   data: ManagerData
+  uptime: number
 
+  setUptime: (uptime: number) => void
   onData: (func: OnData) => void
   onEvicted: (func: OnEvicted) => void
 }
@@ -34,6 +38,8 @@ export const createManager: (
   const onEvictedListeners: OnEvicted[] = []
 
   const data: ManagerData = new Map(options?.initialData)
+  let uptime = options?.initialUptime ?? 0
+
   const _evictOldData = async () => {
     const now = Date.now()
     const keys = [...data.keys()].filter(key => now - key >= evictTime)
@@ -64,6 +70,11 @@ export const createManager: (
     _task,
     plugin,
     data,
+
+    uptime,
+    setUptime: value => {
+      uptime = value
+    },
 
     onData: func => onDataListeners.push(func),
     onEvicted: func => onEvictedListeners.push(func),

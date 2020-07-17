@@ -7,6 +7,7 @@ export interface ITransformedData {
 
   status: Status
   limit: number
+  uptime: number
   data: Array<[number, number]>
 }
 
@@ -21,6 +22,7 @@ export const transformData: (
     description: manager.plugin.description(),
     status,
     limit: manager.plugin.limit,
+    uptime: manager.uptime,
     data: data.map(([time, { latency }]) => [time, latency]),
   }
 }
