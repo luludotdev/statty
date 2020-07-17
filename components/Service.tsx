@@ -42,7 +42,7 @@ export const Service: FunctionComponent<ITransformedData> = ({
           <FontAwesomeIcon icon={icon} />
         </div>
 
-        <h2 className='title'>
+        <h2 id={id} className='title'>
           {id}
 
           <span className='information'>{latency && `${latency}ms`}</span>
