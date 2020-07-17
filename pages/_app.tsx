@@ -5,6 +5,7 @@ import {
   faQuestionCircle,
   faTimesCircle,
 } from '@fortawesome/free-solid-svg-icons'
+import { showAd } from 'lib/ad'
 import { AppProps } from 'next/app'
 
 import '~styles/app.styl'
@@ -12,6 +13,7 @@ import '@fortawesome/fontawesome-svg-core/styles.css'
 
 config.autoAddCss = false
 library.add(faCheckCircle, faExclamationCircle, faQuestionCircle, faTimesCircle)
+showAd()
 
 const NextApp = ({ Component, pageProps }: AppProps) => {
   return <Component {...pageProps} />
