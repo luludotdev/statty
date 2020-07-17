@@ -22,3 +22,16 @@ export const evictData: (
   const key = redisKey(plugin, 'stats')
   await redis.hdel(key, timestamp.toString())
 }
+
+export const loadData: (
+  plugin: IPlugin
+) => Promise<Array<[number, IPluginReponse]>> = async plugin => {
+  const key = redisKey(plugin, 'stats')
+  const rawData = await redis.hgetall(key)
+
+  const initialData: Array<[number, IPluginReponse]> = Object.entries(
+    rawData
+  ).map(([key, value]) => [Number.parseInt(key, 10), JSON.parse(value)])
+
+  return initialData
+}
