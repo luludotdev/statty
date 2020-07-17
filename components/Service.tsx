@@ -14,6 +14,7 @@ export const Service: FunctionComponent<ITransformedData> = ({
   status,
   limit,
   data,
+  uptime,
 }) => {
   const title =
     status === Status.Operational
@@ -46,7 +47,8 @@ export const Service: FunctionComponent<ITransformedData> = ({
           {id}
 
           <span className='information'>
-            {latency !== undefined && `${latency}ms`}
+            {latency !== undefined && `${latency}ms`}{' '}
+            <span title='Uptime'>({(uptime * 100).toFixed(0)}%)</span>
           </span>
         </h2>
       </header>
