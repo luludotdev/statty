@@ -1,11 +1,13 @@
 /* eslint-disable prettier/prettier */
 import { registerInt, registerString } from "./register"
 
-export const IS_SERVER = typeof window === 'undefined'
-
+// #region Globals
 const NODE_ENV = registerString('NODE_ENV')
 const IS_PROD = NODE_ENV?.toLowerCase() === 'production'
 export const IS_DEV = !IS_PROD
+
+export const IS_SERVER = typeof window === 'undefined'
+// #endregion
 
 // #region Redis
 export const REDIS_HOST = registerString('REDIS_HOST') ?? (IS_DEV ? 'localhost' : 'redis')
