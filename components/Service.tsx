@@ -6,8 +6,6 @@ import { Status } from '~plugins/types'
 import { Graph } from './Graph'
 import { Linkify } from './Linkify'
 
-import '~styles/service.styl'
-
 export const Service: FunctionComponent<ITransformedData> = ({
   id,
   description,
@@ -38,6 +36,47 @@ export const Service: FunctionComponent<ITransformedData> = ({
 
   return (
     <div className={clsx('service', `service-${status}`)}>
+      <style jsx>
+        {`
+          .service
+            margin 2rem 0
+
+            & header
+              display flex
+              align-items center
+
+              & h2
+                margin 0
+
+            & .information
+              margin-left 0.5em
+              opacity 0.5
+
+              @media (max-width 500px)
+                &
+                  font-size 1rem
+
+            & .description
+              margin-top 1em
+
+            & .icon
+              font-size 2em
+              margin-right 0.5em
+
+            &.service-operational .icon
+              color #2ecc40
+
+            &.service-degraded .icon
+              color #ff851b
+
+            &.service-unreachable .icon
+              color #ff4136
+
+            &.service-unknown .icon
+              color #888
+        `}
+      </style>
+
       <header>
         <div className='icon' title={title}>
           <FontAwesomeIcon icon={icon} />

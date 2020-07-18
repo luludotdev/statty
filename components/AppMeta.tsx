@@ -1,11 +1,14 @@
 import { FunctionComponent } from 'react'
 import {
+  COLOUR_GREEN,
+  COLOUR_ORANGE,
+  COLOUR_RED,
   STATUS_DEGRADED,
   STATUS_OPERATIONAL,
   STATUS_OUTAGES,
   STATUS_UNKNOWN,
-  useStatus,
-} from '~hooks/useStatus'
+} from '~constants'
+import { useStatus } from '~hooks/useStatus'
 import { ITransformedData } from '~managers'
 import { Meta } from './Meta'
 
@@ -28,11 +31,11 @@ export const AppMeta: FunctionComponent<IProps> = ({ siteName, stats }) => {
     : undefined
 
   const colour = hasSevere
-    ? '#ffb3b3'
+    ? COLOUR_RED
     : hasUnknown || hasDegraded
-    ? '#ffdfb3'
+    ? COLOUR_ORANGE
     : hasNone
-    ? '#b3ffb3'
+    ? COLOUR_GREEN
     : undefined
 
   return <Meta siteName={siteName} description={description} colour={colour} />

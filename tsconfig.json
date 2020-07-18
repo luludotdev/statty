@@ -22,8 +22,8 @@
     "paths": {
       "~components/*": ["components/*"],
       "~api/*": ["pages/api/*"],
-      "~styles/*": ["styles/*"],
 
+      "~constants": ["lib/constants"],
       "~config": ["lib/config"],
       "~env": ["lib/env"],
       "~hooks/*": ["lib/hooks/*"],

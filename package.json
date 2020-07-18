@@ -26,7 +26,6 @@
     "react-dom": "16.13.1",
     "react-linkify-nofuzzy": "^1.0.1-alpha",
     "recharts": "^1.8.5",
-    "stylus": "^0.54.8",
     "swr": "^0.2.3",
     "type-fest": "^0.16.0",
     "yaml": "^1.10.0"
@@ -39,8 +38,6 @@
     "@types/node-cron": "^2.0.3",
     "@types/react": "^16.9.43",
     "@types/recharts": "^1.8.14",
-    "@zeit/next-css": "^1.0.1",
-    "@zeit/next-stylus": "^1.0.1",
     "babel-plugin-recharts": "^1.2.1",
     "eslint-config-xo-react": "^0.23.0",
     "eslint-plugin-prettier": "^3.1.4",
@@ -48,6 +45,8 @@
     "eslint-plugin-react-hooks": "^4.0.8",
     "prettier": "^2.0.5",
     "read-pkg-up": "^7.0.1",
+    "styled-jsx-plugin-stylus": "^0.0.4",
+    "stylus": "^0.54.8",
     "typescript": "^3.9.6",
     "xo": "^0.32.1"
   }

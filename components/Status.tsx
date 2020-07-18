@@ -4,8 +4,8 @@ import {
   STATUS_OPERATIONAL,
   STATUS_OUTAGES,
   STATUS_UNKNOWN,
-  useStatus,
-} from '~hooks/useStatus'
+} from '~constants'
+import { useStatus } from '~hooks/useStatus'
 import { ITransformedData } from '~managers'
 import { Notice } from './Notice'
 

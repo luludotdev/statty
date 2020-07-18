@@ -14,8 +14,6 @@ import {
 import { useMediaQuery } from '~hooks/useMediaQuery'
 import { ITransformedData } from '~managers'
 
-import '~styles/graph.styl'
-
 interface IProps {
   limit: ITransformedData['limit']
   data: ITransformedData['data']
@@ -46,6 +44,54 @@ export const Graph: FunctionComponent<IProps> = ({ data, limit }) => {
 
   return (
     <div className='graph-container'>
+      <style jsx>
+        {`
+          .graph-container
+            width 100%
+
+          .graph-placeholder
+            width 100%
+            height 175px
+            border-radius 0.25rem
+
+            background-color rgb(205, 205, 205)
+            animation placeholder-pulse 1.5s infinite
+
+          @keyframes placeholder-pulse
+            0%
+              opacity .6
+            50%
+              opacity 1
+            100%
+              opacity .6
+        `}
+      </style>
+
+      <style jsx global>
+        {`
+          .recharts-cartesian-axis-tick-value
+            font-size 0.85em
+
+          .recharts-tooltip-item
+            padding 0 !important
+
+          .recharts-tooltip-wrapper
+            color inherit
+
+          .recharts-tooltip-wrapper .recharts-default-tooltip
+            border none !important
+            padding 0.5em !important
+            border-radius 0.2rem
+            font-size 0.85em
+            opacity 0.75
+            line-height 1.25
+            background-color white
+
+            & li
+              color inherit !important
+        `}
+      </style>
+
       <ResponsiveContainer width='100%' height={175}>
         <AreaChart data={transformed}>
           <XAxis
