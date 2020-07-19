@@ -1,7 +1,9 @@
 import ms from 'ms'
 import { schedule } from 'node-cron'
+import { config as readConfig } from '~config'
 import { IPlugin, IPluginReponse } from '~plugins'
 import { sleep } from '~utils/sleep'
+import { runAlerts } from './alerts'
 import { evictData, loadData, saveData } from './persistence'
 import { readUptime, saveUptime } from './uptime'
 
@@ -11,6 +13,7 @@ interface IManagerOptions {
   crontab?: string
   evictTime?: string
   delay?: number
+  sendAlerts?: boolean
 }
 
 export interface IManager {
@@ -23,8 +26,11 @@ export const createManager: (
   plugin: IPlugin,
   options?: IManagerOptions
 ) => Promise<IManager> = async (plugin, options) => {
+  const config = await readConfig()
+
   const crontab = options?.crontab ?? '* * * * *'
   const evictTime = ms(options?.evictTime ?? '61m')
+  const sendAlerts = options?.sendAlerts ?? true
 
   const initialData = await loadData(plugin)
   const initialUptime = await readUptime(plugin)
@@ -57,6 +63,10 @@ export const createManager: (
     await saveUptime(plugin, time, result)
     const uptime = await readUptime(plugin)
     if (uptime !== undefined) uptimeRef.uptime = uptime
+
+    if (sendAlerts === false) return
+    if (config.instance.alerts === undefined) return
+    await runAlerts(plugin, result.status, config.instance.alerts)
   }
 
   const _task = schedule(crontab, _readData)
