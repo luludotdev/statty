@@ -1,5 +1,6 @@
 import { IAlert } from '~config'
 import { IPlugin, Status } from '~plugins'
+import { redis, redisKey } from '~redis'
 
 const injectDefaults: (alerts: IAlert) => Required<IAlert> = alerts => ({
   ...alerts,
@@ -22,14 +23,34 @@ const isHealthy: (
   plugin: IPlugin,
   alerts: Required<IAlert>
 ) => Promise<void> = async (plugin, alerts) => {
-  throw new Error('Not Implemented!')
-  // TODO
+  const key = redisKey(plugin, 'alerts')
+
+  const isSent = await redis.hget(key, 'sent')
+  if (isSent === null) return
+
+  const healthy = await redis.hincrby(key, 'healthy', 1)
+  if (healthy < alerts.healthyCount) return
+
+  await redis.del(key)
+  // TODO: Send all clear
 }
 
 const isUnhealthy: (
   plugin: IPlugin,
   alerts: Required<IAlert>
 ) => Promise<void> = async (plugin, alerts) => {
-  throw new Error('Not Implemented!')
-  // TODO
+  const key = redisKey(plugin, 'alerts')
+
+  const unhealthy = await redis.hincrby(key, 'unhealthy', 1)
+  if (unhealthy < alerts.unhealthyCount) return
+
+  const isSent = await redis.hget(key, 'sent')
+  if (isSent !== null) return
+
+  const pipe = redis.pipeline()
+  pipe.hset(key, 'sent', 1)
+  pipe.hset(key, 'healthy', 0)
+  await pipe.exec()
+
+  // TODO: Send alerts
 }
