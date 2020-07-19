@@ -4,12 +4,14 @@ import { awaitRedis } from '~redis'
 import { resolvePlugin } from './resolvePlugin'
 
 let setup = false
+let isSettingUp = false
 let instance: IInstance | undefined
 const managers: Map<string, IManager> = new Map()
 
 export const loadConfig: () => Promise<void> = async () => {
   if (setup === true) return
-  setup = true
+  if (isSettingUp === true) return
+  isSettingUp = true
 
   const config = await readConfig()
   instance = config.instance
@@ -41,6 +43,7 @@ export const loadConfig: () => Promise<void> = async () => {
     managers.set(service.id, manager)
   }
 
+  setup = true
   /* eslint-enable no-await-in-loop */
 }
 
