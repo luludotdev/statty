@@ -25,7 +25,8 @@
           "$id": "#/properties/instance/properties/name",
           "type": "string",
           "title": "Instance Name",
-          "description": "Used on the dashboard."
+          "description": "Used on the dashboard.",
+          "pattern": "^(.+)$"
         },
         "crontab": {
           "$id": "#/properties/instance/properties/crontab",
