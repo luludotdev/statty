@@ -37,7 +37,7 @@ const isHealthy: (
   await redis.del(key)
 
   const payload = await buildPayload(plugin, Status.Operational)
-  await sendHooks(payload, ...alerts.webhooks)
+  await sendAlerts(payload, ...alerts.webhooks)
 }
 
 const isUnhealthy: (
@@ -58,10 +58,13 @@ const isUnhealthy: (
   await pipe.exec()
 
   const payload = await buildPayload(plugin, Status.Unreachable)
-  await sendHooks(payload, ...alerts.webhooks)
+  await sendAlerts(payload, ...alerts.webhooks)
 }
 
 interface IPayload {
+  username?: string
+  avatar_url?: string
+
   attachments: IAttachment[]
 }
 
@@ -107,9 +110,6 @@ const buildPayload: (
     fallback: `**${title}**\n${text}`,
     color,
 
-    author_name: `${name} • Statty`,
-    author_link: baseURL,
-
     title,
     title_link: `${baseURL}#${plugin.id}`,
     text,
@@ -118,11 +118,12 @@ const buildPayload: (
   }
 
   return {
+    username: `${name} • Statty`,
     attachments: [payload],
   }
 }
 
-const sendHooks: (
+const sendAlerts: (
   payload: IPayload,
   ...urls: string[]
 ) => Promise<void> = async (payload, ...urls) => {
