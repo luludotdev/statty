@@ -5,6 +5,7 @@ export interface IConfig {
 
 export interface IInstance {
   name: string
+  canonicalURL?: string
 
   crontab?: string
   evictTime?: string

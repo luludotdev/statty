@@ -20,6 +20,9 @@
       "required": [
         "name"
       ],
+      "dependencies": {
+        "alerts": ["canonicalURL"]
+      },
       "properties": {
         "name": {
           "$id": "#/properties/instance/properties/name",
@@ -27,6 +30,12 @@
           "title": "Instance Name",
           "description": "Used on the dashboard.",
           "pattern": "^(.+)$"
+        },
+        "canonicalURL": {
+          "$id": "#/properties/instance/properties/canonicalURL",
+          "type": "string",
+          "format": "uri",
+          "description": "Used in links sent via alerts."
         },
         "crontab": {
           "$id": "#/properties/instance/properties/crontab",
