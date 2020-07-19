@@ -1,6 +1,9 @@
 import { IAlert } from '~config'
+import { COLOUR_GREEN, COLOUR_RED } from '~constants'
+import { getInstance } from '~loader'
 import { IPlugin, Status } from '~plugins'
 import { redis, redisKey } from '~redis'
+import { axios } from '~utils/axios'
 
 const injectDefaults: (alerts: IAlert) => Required<IAlert> = alerts => ({
   ...alerts,
@@ -32,7 +35,9 @@ const isHealthy: (
   if (healthy < alerts.healthyCount) return
 
   await redis.del(key)
-  // TODO: Send all clear
+
+  const payload = await buildPayload(plugin, Status.Operational)
+  await sendHooks(payload, ...alerts.webhooks)
 }
 
 const isUnhealthy: (
@@ -52,5 +57,74 @@ const isUnhealthy: (
   pipe.hset(key, 'healthy', 0)
   await pipe.exec()
 
-  // TODO: Send alerts
+  const payload = await buildPayload(plugin, Status.Unreachable)
+  await sendHooks(payload, ...alerts.webhooks)
+}
+
+interface IPayload {
+  attachments: IAttachment[]
+}
+
+interface IAttachment {
+  fallback: string
+  color?: string
+
+  author_name?: string
+  author_link?: string
+
+  title?: string
+  title_link?: string
+
+  text?: string
+  fields?: IField[]
+
+  footer?: string
+  ts?: number
+}
+
+interface IField {
+  title: string
+  value: string
+  short: boolean
+}
+
+const buildPayload: (
+  plugin: IPlugin,
+  status: Status
+) => Promise<IPayload> = async (plugin, status) => {
+  const { canonicalURL, name } = await getInstance()
+  if (canonicalURL === undefined) throw new Error('Uh oh')
+  const baseURL = canonicalURL.endsWith('/') ? canonicalURL : `${canonicalURL}/`
+
+  const title = `Service alert for \`${plugin.id}\``
+  const color = status === Status.Unreachable ? COLOUR_RED : COLOUR_GREEN
+  const text =
+    status === Status.Unreachable
+      ? 'Service is unreachable!'
+      : 'Service has resumed normal operation.'
+
+  const payload: IAttachment = {
+    fallback: `**${title}**\n${text}`,
+    color,
+
+    author_name: `${name} • Statty`,
+    author_link: baseURL,
+
+    title,
+    title_link: `${baseURL}#${plugin.id}`,
+    text,
+
+    ts: Math.floor(Date.now() / 1000),
+  }
+
+  return {
+    attachments: [payload],
+  }
+}
+
+const sendHooks: (
+  payload: IPayload,
+  ...urls: string[]
+) => Promise<void> = async (payload, ...urls) => {
+  await Promise.allSettled(urls.map(async url => axios.post(url, payload)))
 }
