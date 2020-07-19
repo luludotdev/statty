@@ -9,6 +9,15 @@ export interface IInstance {
   crontab?: string
   evictTime?: string
   delayFactor?: number
+
+  alerts?: IAlert
+}
+
+export interface IAlert {
+  webhooks: string[]
+
+  unhealthyCount?: number
+  healthyCount?: number
 }
 
 export interface IService {
@@ -20,4 +29,6 @@ export interface IService {
 
   description?: string
   latencyLimit?: number
+
+  sendAlerts?: boolean
 }
