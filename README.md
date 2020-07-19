@@ -5,7 +5,7 @@
 ## ❔ What is Statty?
 Statty is an application server that powers a status page. It monitors your services and keeps track of response times and average uptime. It is designed to be lightweight and minimal, you only need to configure it once and it does the rest.
 
-Statty can also be configured to send notifications if services are reported to be unreachable, and send all clear notifications when they come back online. Alerts are sent via Slack-compatible webhooks, and can be set globally or specific to each service.
+Statty can also be configured to send notifications if services are reported to be unreachable, and send all clear notifications when they come back online. Alerts are sent via Slack-compatible webhooks, and can be enabled or disabled for each service.
 
 Statty is built with [Next.js](https://github.com/vercel/next.js), which allows the dashboard to load fast and stay responsive.
 
