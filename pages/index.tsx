@@ -40,10 +40,12 @@ const App: NextPage<IProps> = ({ siteName, initialData }) => {
   )
 }
 
-export const getServerSideProps: GetServerSideProps<IProps> = async () => {
+export const getServerSideProps: GetServerSideProps<IProps> = async ({
+  req,
+}) => {
   const [resp, initialData] = await Promise.all([
-    axios.get<IInstance>('/api/instance'),
-    fetchStats(),
+    axios.get<IInstance>('/api/instance', { _req: req }),
+    fetchStats(req),
   ])
 
   return { props: { siteName: resp.data.name, initialData } }

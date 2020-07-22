@@ -1,10 +1,16 @@
+import { IncomingMessage } from 'http'
 import useSWR, { responseInterface } from 'swr'
 import { Except } from 'type-fest'
 import { ITransformedData } from '~managers'
 import { axios } from '~utils/axios'
 
-export const fetchStats: () => Promise<ITransformedData[]> = async () => {
-  const resp = await axios.get<ITransformedData[]>('/api/stats')
+export const fetchStats: (
+  req?: IncomingMessage
+) => Promise<ITransformedData[]> = async request => {
+  const resp = await axios.get<ITransformedData[]>('/api/stats', {
+    _req: request,
+  })
+
   return resp.data
 }
 

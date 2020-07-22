@@ -1,12 +1,24 @@
 import Axios, { AxiosError, AxiosRequestConfig } from 'axios'
+import { IncomingMessage } from 'http'
+import absoluteUrl from 'next-absolute-url'
 import { IS_SERVER } from '~env'
 
-const server: AxiosRequestConfig = {
-  // TODO: Make this more reliable
-  baseURL: 'http://localhost:3000',
+declare module 'axios' {
+  interface AxiosRequestConfig {
+    _req?: IncomingMessage
+  }
 }
 
-export const axios = IS_SERVER ? Axios.create(server) : Axios.create()
+export const axios = Axios.create()
+if (IS_SERVER) {
+  axios.interceptors.request.use(config => {
+    if (config._req === undefined) throw new Error('Oh no!')
+    const { origin } = absoluteUrl(config._req)
+    config.baseURL = origin
+
+    return config
+  })
+}
 
 // @ts-expect-error
 export const isAxiosError: (error: unknown) => error is AxiosError = error => {

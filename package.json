@@ -21,6 +21,7 @@
     "ip6addr": "^0.2.3",
     "ms": "^2.1.2",
     "next": "9.4.4",
+    "next-absolute-url": "^1.2.2",
     "node-cron": "^2.0.3",
     "react": "16.13.1",
     "react-dom": "16.13.1",
