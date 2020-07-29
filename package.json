@@ -20,7 +20,7 @@
     "ioredis": "^4.17.3",
     "ip6addr": "^0.2.3",
     "ms": "^2.1.2",
-    "next": "9.4.4",
+    "next": "9.5.0",
     "next-absolute-url": "^1.2.2",
     "node-cron": "^2.0.3",
     "react": "16.13.1",
@@ -35,7 +35,7 @@
     "@types/ioredis": "^4.17.2",
     "@types/ip6addr": "^0.2.0",
     "@types/ms": "^0.7.31",
-    "@types/node": "^14.0.23",
+    "@types/node": "^14.0.27",
     "@types/node-cron": "^2.0.3",
     "@types/react": "^16.9.43",
     "@types/recharts": "^1.8.14",
@@ -48,7 +48,7 @@
     "read-pkg-up": "^7.0.1",
     "styled-jsx-plugin-stylus": "^0.0.4",
     "stylus": "^0.54.8",
-    "typescript": "^3.9.6",
+    "typescript": "^3.9.7",
     "xo": "^0.32.1"
   }
 }
