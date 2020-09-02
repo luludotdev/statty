@@ -1,7 +1,9 @@
 import { fetchDataSingle } from 'lib/data'
 import { NextApiRequest, NextApiResponse } from 'next'
+import nc from 'next-connect'
 
-const stats = async (request: NextApiRequest, resp: NextApiResponse) => {
+const handler = nc<NextApiRequest, NextApiResponse>()
+handler.get(async (request, resp) => {
   const stat = Array.isArray(request.query.stat)
     ? request.query.stat[0]
     : request.query.stat
@@ -14,6 +16,6 @@ const stats = async (request: NextApiRequest, resp: NextApiResponse) => {
 
   resp.statusCode = 200
   resp.json(data)
-}
+})
 
-export default stats
+export default handler

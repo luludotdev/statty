@@ -22,6 +22,7 @@
     "ms": "^2.1.2",
     "next": "9.5.2",
     "next-absolute-url": "^1.2.2",
+    "next-connect": "^0.8.1",
     "node-cron": "^2.0.3",
     "react": "16.13.1",
     "react-dom": "16.13.1",
