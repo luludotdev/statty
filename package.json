@@ -20,7 +20,7 @@
     "ioredis": "^4.17.3",
     "ip6addr": "^0.2.3",
     "ms": "^2.1.2",
-    "next": "9.5.3",
+    "next": "9.5.4",
     "next-absolute-url": "^1.2.2",
     "next-connect": "^0.8.1",
     "node-cron": "^2.0.3",
