@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import { FunctionComponent } from 'react'
+import { FC } from 'react'
 
 interface IRequiredProps {
   siteName: string
@@ -11,9 +11,12 @@ interface IOptionalProps {
   colour: string
 }
 
-export const Meta: FunctionComponent<
-  IRequiredProps & Partial<IOptionalProps>
-> = ({ siteName, description, image, colour }) => {
+export const Meta: FC<IRequiredProps & Partial<IOptionalProps>> = ({
+  siteName,
+  description,
+  image,
+  colour,
+}) => {
   const site = `${siteName} • Statty`
 
   return (

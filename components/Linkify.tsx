@@ -1,7 +1,7 @@
-import { FunctionComponent } from 'react'
+import { FC } from 'react'
 import ReactLinkify from 'react-linkify-nofuzzy'
 
-export const Linkify: FunctionComponent = ({ children }) => (
+export const Linkify: FC = ({ children }) => (
   <ReactLinkify>
     {children}
 

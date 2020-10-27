@@ -1,4 +1,4 @@
-import { FunctionComponent } from 'react'
+import { FC } from 'react'
 import {
   STATUS_DEGRADED,
   STATUS_OPERATIONAL,
@@ -13,7 +13,7 @@ interface IProps {
   stats: ITransformedData[]
 }
 
-export const Incidents: FunctionComponent<IProps> = ({ stats }) => {
+export const Incidents: FC<IProps> = ({ stats }) => {
   const { hasSevere, hasDegraded, hasUnknown, hasNone } = useStatus(stats)
 
   const worstSeverity = hasSevere

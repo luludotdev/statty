@@ -1,4 +1,4 @@
-import { FunctionComponent } from 'react'
+import { FC } from 'react'
 import {
   COLOUR_GREEN,
   COLOUR_ORANGE,
@@ -17,7 +17,7 @@ interface IProps {
   stats: ITransformedData[]
 }
 
-export const AppMeta: FunctionComponent<IProps> = ({ siteName, stats }) => {
+export const AppMeta: FC<IProps> = ({ siteName, stats }) => {
   const { hasSevere, hasDegraded, hasUnknown, hasNone } = useStatus(stats)
 
   const description = hasSevere

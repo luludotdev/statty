@@ -1,5 +1,5 @@
 import ms from 'ms'
-import { FunctionComponent, useMemo } from 'react'
+import { FC, useMemo } from 'react'
 import {
   Area,
   AreaChart,
@@ -19,7 +19,7 @@ interface IProps {
   data: ITransformedData['data']
 }
 
-export const Graph: FunctionComponent<IProps> = ({ data, limit }) => {
+export const Graph: FC<IProps> = ({ data, limit }) => {
   const isSmallScreen = useMediaQuery('(max-width: 500px)')
 
   const transformed = useMemo(() => {
