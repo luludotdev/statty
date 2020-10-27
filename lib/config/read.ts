@@ -4,7 +4,7 @@ import yaml from 'yaml'
 import { CONFIG_PATH } from '~env'
 import { exists } from '~utils/fs'
 
-type ParserFn = (str: string) => any
+type ParserFn = (string: string) => any
 
 const resolvePath: () => Promise<[string, ParserFn] | undefined> = async () => {
   const extensions: Array<[string, ParserFn]> = [

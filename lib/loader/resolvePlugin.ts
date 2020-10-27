@@ -1,5 +1,5 @@
 import * as plugins from '~plugins'
-import { IPluginFactory } from '~plugins'
+import type { IPluginFactory } from '~plugins'
 
 export const resolvePlugin: (
   type: string

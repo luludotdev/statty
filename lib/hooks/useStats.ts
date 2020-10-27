@@ -5,7 +5,7 @@ import { ITransformedData } from '~managers'
 import { axios } from '~utils/axios'
 
 export const fetchStats: (
-  req?: IncomingMessage
+  request?: IncomingMessage
 ) => Promise<ITransformedData[]> = async request => {
   const resp = await axios.get<ITransformedData[]>('/api/stats', {
     _req: request,
