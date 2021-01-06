@@ -14,7 +14,7 @@
     "@fortawesome/react-fontawesome": "^0.1.13",
     "@lolpants/pingman": "^1.0.6",
     "ajv": "^6.12.6",
-    "axios": "^0.21.0",
+    "axios": "^0.21.1",
     "bit-buffer": "^0.2.4",
     "clsx": "^1.1.1",
     "ioredis": "^4.19.4",
