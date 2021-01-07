@@ -39,16 +39,16 @@
       }]
     }],
     "import/extensions": [
-			"error",
-			{
-				"js": "never",
-				"jsx": "never",
-				"json": "always",
-				"svg": "always",
-				"css": "always",
-				"styl": "always"
-			}
-		],
+      "error",
+      {
+        "js": "never",
+        "jsx": "never",
+        "json": "always",
+        "svg": "always",
+        "css": "always",
+        "styl": "always"
+      }
+    ],
 
     "unicorn/filename-case": 0,
     "unicorn/no-reduce": 0,
@@ -59,6 +59,9 @@
     "react/prop-types": 0,
     "react/state-in-constructor": 0,
 
-    "@typescript-eslint/no-unnecessary-boolean-literal-compare": 0
+    "@typescript-eslint/no-unnecessary-boolean-literal-compare": 0,
+    "@typescript-eslint/no-confusing-void-expression": ["error", {
+      "ignoreArrowShorthand": true
+    }]
   }
 }
