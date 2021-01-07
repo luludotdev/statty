@@ -11,7 +11,9 @@ handler.get(async (request, resp) => {
   const data = await fetchDataSingle(stat)
   if (data === undefined) {
     resp.statusCode = 404
-    return resp.end()
+    resp.end()
+
+    return
   }
 
   resp.statusCode = 200

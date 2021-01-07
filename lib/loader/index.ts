@@ -49,7 +49,7 @@ export const loadConfig: () => Promise<void> = async () => {
 
 export const getInstance: () => Promise<IInstance> = async () => {
   await loadConfig()
-  return instance as IInstance
+  return instance!
 }
 
 export const getManagers: () => Promise<Map<string, IManager>> = async () => {

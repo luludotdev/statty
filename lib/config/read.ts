@@ -15,7 +15,7 @@ const resolvePath: () => Promise<[string, ParserFn] | undefined> = async () => {
 
   const envExists = CONFIG_PATH && (await exists(CONFIG_PATH))
   if (envExists) {
-    const configPath = CONFIG_PATH as string
+    const configPath = CONFIG_PATH!
     const ext = parse(configPath).ext.slice(1)
 
     const firstExt = extensions.find(([extension]) => extension === ext)
