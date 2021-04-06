@@ -29,7 +29,7 @@ export const loadConfig: () => Promise<void> = async () => {
       throw new Error(`Unknown plugin type: \`${service.plugin}\``)
     }
 
-    const idx = config.services.findIndex(x => x === service)
+    const idx = config.services.indexOf(service)
     const delayFactor = config.instance.delayFactor ?? 2
     const delay = delayFactor === -1 ? undefined : delayFactor * idx * 1000
 
