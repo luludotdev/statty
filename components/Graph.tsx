@@ -125,7 +125,7 @@ export const Graph: FC<IProps> = ({ data, limit }) => {
 
           <Tooltip
             isAnimationActive={false}
-            formatter={v => {
+            formatter={(v: any) => {
               const value = Array.isArray(v) ? v[0] : v
               const string: string = value.toString()
               return `${string}ms`
