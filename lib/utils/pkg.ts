@@ -1,4 +1,4 @@
-import { sync as readPkg } from 'read-pkg-up'
+import { readPackageUpSync as readPkg } from 'read-pkg-up'
 
 const pkg = readPkg()
 export const name = pkg?.packageJson.name ?? 'statty'
