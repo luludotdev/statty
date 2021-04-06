@@ -1,6 +1,10 @@
 import ms from 'ms'
 import { FC, useMemo } from 'react'
-import {
+import * as Recharts from 'recharts'
+import { useMediaQuery } from '~hooks/useMediaQuery'
+import { ITransformedData } from '~managers'
+
+const {
   Area,
   AreaChart,
   CartesianGrid,
@@ -10,9 +14,7 @@ import {
   Tooltip,
   XAxis,
   YAxis,
-} from 'recharts'
-import { useMediaQuery } from '~hooks/useMediaQuery'
-import { ITransformedData } from '~managers'
+} = Recharts
 
 interface IProps {
   limit: ITransformedData['limit']
