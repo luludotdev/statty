@@ -8,6 +8,9 @@
     "start": "next start",
     "lint": "xo"
   },
+  "engines": {
+    "node": ">=12"
+  },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.35",
     "@fortawesome/free-solid-svg-icons": "^5.15.3",
