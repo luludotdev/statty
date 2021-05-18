@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { TransformedData } from '~managers'
+import type { TransformedData } from '~managers'
 import { Status } from '~plugins/types'
 
 export const useStatus = (stats: TransformedData[]) => {

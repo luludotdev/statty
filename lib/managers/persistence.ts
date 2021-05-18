@@ -1,4 +1,4 @@
-import { Plugin, PluginReponse } from '~plugins'
+import type { Plugin, PluginReponse } from '~plugins'
 import { redis, redisKey } from '~redis'
 
 const REDIS_KEY = 'stats'

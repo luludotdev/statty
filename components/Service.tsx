@@ -1,10 +1,10 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import clsx from 'clsx'
-import { FC } from 'react'
-import { TransformedData } from '~managers'
+import type { TransformedData } from '~managers'
 import { Status } from '~plugins/types'
 import { Graph } from './Graph'
 import { Linkify } from './Linkify'
+import type { FC } from 'react'
 
 export const Service: FC<TransformedData> = ({
   id,

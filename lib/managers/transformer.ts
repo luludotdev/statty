@@ -1,5 +1,5 @@
 import { Status } from '~plugins/types'
-import { Manager } from './manager'
+import type { Manager } from './manager'
 
 export interface TransformedData {
   id: string

@@ -1,5 +1,6 @@
 import { BitStream } from 'bit-buffer'
-import { Plugin, PluginReponse, Status } from '~plugins'
+import { Status } from '~plugins'
+import type { Plugin, PluginReponse } from '~plugins'
 import { redis, redisKey } from '~redis'
 
 const REDIS_KEY = 'uptime'

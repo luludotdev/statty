@@ -1,6 +1,6 @@
 import clsx from 'clsx'
-import { FC } from 'react'
 import { COLOUR_GREEN, COLOUR_ORANGE, COLOUR_RED } from '~constants'
+import type { FC } from 'react'
 
 interface Props {
   colour: 'green' | 'orange' | 'red'

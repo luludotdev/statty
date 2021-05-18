@@ -1,5 +1,6 @@
 import { getManagers } from '~loader'
-import { transformData, TransformedData } from '~managers'
+import { transformData } from '~managers'
+import type { TransformedData } from '~managers'
 
 export const fetchData: () => Promise<TransformedData[]> = async () => {
   const managers = await getManagers()

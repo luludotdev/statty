@@ -1,7 +1,8 @@
-import Axios, { AxiosError } from 'axios'
-import { IncomingMessage } from 'http'
+import Axios from 'axios'
 import absoluteUrl from 'next-absolute-url'
 import { IS_SERVER } from '~env'
+import type { AxiosError } from 'axios'
+import type { IncomingMessage } from 'http'
 
 declare module 'axios' {
   interface AxiosRequestConfig {

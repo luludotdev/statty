@@ -1,4 +1,3 @@
-import { FC } from 'react'
 import {
   COLOUR_GREEN,
   COLOUR_ORANGE,
@@ -9,8 +8,9 @@ import {
   STATUS_UNKNOWN,
 } from '~constants'
 import { useStatus } from '~hooks/useStatus'
-import { TransformedData } from '~managers'
+import type { TransformedData } from '~managers'
 import { Meta } from './Meta'
+import type { FC } from 'react'
 
 interface Props {
   siteName: string

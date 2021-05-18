@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import { FC } from 'react'
+import type { FC } from 'react'
 
 interface RequiredProps {
   siteName: string

@@ -1,7 +1,8 @@
-import { Alert } from '~config'
+import type { Alert } from '~config'
 import { COLOUR_GREEN, COLOUR_RED } from '~constants'
 import { getInstance } from '~loader'
-import { Plugin, Status } from '~plugins'
+import { Status } from '~plugins'
+import type { Plugin } from '~plugins'
 import { redis, redisKey } from '~redis'
 import { axios } from '~utils/axios'
 

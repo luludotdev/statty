@@ -1,8 +1,9 @@
 import ms from 'ms'
-import { FC, useMemo } from 'react'
+import { useMemo } from 'react'
 import * as Recharts from 'recharts'
 import { useMediaQuery } from '~hooks/useMediaQuery'
-import { TransformedData } from '~managers'
+import type { TransformedData } from '~managers'
+import type { FC } from 'react'
 
 const {
   Area,

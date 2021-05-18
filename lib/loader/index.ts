@@ -1,5 +1,7 @@
-import { Instance, config as readConfig } from '~config'
-import { createManager, Manager } from '~managers'
+import { config as readConfig } from '~config'
+import type { Instance } from '~config'
+import { createManager } from '~managers'
+import type { Manager } from '~managers'
 import { awaitRedis } from '~redis'
 import { resolvePlugin } from './resolvePlugin'
 

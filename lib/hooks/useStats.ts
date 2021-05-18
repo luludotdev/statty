@@ -1,8 +1,8 @@
-import { IncomingMessage } from 'http'
 import useSWR, { responseInterface } from 'swr'
-import { Except } from 'type-fest'
-import { TransformedData } from '~managers'
+import type { TransformedData } from '~managers'
 import { axios } from '~utils/axios'
+import type { IncomingMessage } from 'http'
+import type { Except } from 'type-fest'
 
 export const fetchStats: (
   request?: IncomingMessage
