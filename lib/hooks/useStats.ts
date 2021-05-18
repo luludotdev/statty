@@ -1,7 +1,8 @@
-import useSWR, { responseInterface } from 'swr'
+import useSWR from 'swr'
 import type { TransformedData } from '~managers'
 import { axios } from '~utils/axios'
 import type { IncomingMessage } from 'http'
+import type { SWRResponse } from 'swr'
 import type { Except } from 'type-fest'
 
 export const fetchStats: (
@@ -14,7 +15,7 @@ export const fetchStats: (
   return resp.data
 }
 
-type Response = Except<responseInterface<any, any>, 'data'>
+type Response = Except<SWRResponse<any, any>, 'data'>
 
 /* eslint-disable prettier/prettier */
 /* eslint-disable no-redeclare */
