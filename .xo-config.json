@@ -1,5 +1,5 @@
 {
-  "extends": "xo-react",
+  "extends": ["xo-react"],
   "envs": ["es2020", "browser"],
 
   "space": true,
@@ -7,6 +7,12 @@
   "prettier": true,
 
   "ignores": ["./next-env.d.ts", "./next.config.js"],
+  "overrides": [{
+    "files": "./*.config.js",
+    "rules": {
+      "@typescript-eslint/no-confusing-void-expression": 0
+    }
+  }],
 
   "rules": {
     "no-negated-condition": 0,
@@ -49,6 +55,14 @@
         "styl": "always"
       }
     ],
+
+    "node/file-extension-in-import": 0,
+    "node/no-unsupported-features/es-syntax": ["error", {
+      "ignores": [
+        "dynamicImport",
+        "modules"
+      ]
+    }],
 
     "unicorn/filename-case": 0,
     "unicorn/no-reduce": 0,
