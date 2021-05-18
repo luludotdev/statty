@@ -15,6 +15,7 @@ const resolvePath: () => Promise<[string, ParserFn] | undefined> = async () => {
 
   const envExists = CONFIG_PATH && (await exists(CONFIG_PATH))
   if (envExists) {
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const configPath = CONFIG_PATH!
     const ext = parse(configPath).ext.slice(1)
 

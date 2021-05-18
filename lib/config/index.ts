@@ -1,10 +1,10 @@
 import { readConfig } from './read'
-import { IConfig } from './types'
+import { Config } from './types'
 import { validateConfig } from './validate'
 
-let configCache: IConfig | undefined
+let configCache: Config | undefined
 
-export const config: () => Promise<IConfig> = async () => {
+export const config: () => Promise<Config> = async () => {
   if (configCache !== undefined) return configCache
 
   const object = await readConfig()

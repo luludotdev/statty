@@ -1,18 +1,18 @@
 import { GetServerSideProps, NextPage } from 'next'
-import type { IInstance } from '~api/instance'
+import type { Instance } from '~api/instance'
 import { AppMeta } from '~components/AppMeta'
 import { Service } from '~components/Service'
 import { Incidents } from '~components/Status'
 import { fetchStats, useStats } from '~hooks/useStats'
-import { ITransformedData } from '~managers'
+import { TransformedData } from '~managers'
 import { axios } from '~utils/axios'
 
-interface IProps {
+interface Props {
   siteName: string
-  initialData: ITransformedData[]
+  initialData: TransformedData[]
 }
 
-const App: NextPage<IProps> = ({ siteName, initialData }) => {
+const App: NextPage<Props> = ({ siteName, initialData }) => {
   const { stats } = useStats(initialData)
 
   return (
@@ -40,11 +40,11 @@ const App: NextPage<IProps> = ({ siteName, initialData }) => {
   )
 }
 
-export const getServerSideProps: GetServerSideProps<IProps> = async ({
+export const getServerSideProps: GetServerSideProps<Props> = async ({
   req,
 }) => {
   const [resp, initialData] = await Promise.all([
-    axios.get<IInstance>('/api/instance', { _req: req }),
+    axios.get<Instance>('/api/instance', { _req: req }),
     fetchStats(req),
   ])
 

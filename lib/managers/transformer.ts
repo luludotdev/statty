@@ -1,7 +1,7 @@
 import { Status } from '~plugins/types'
-import { IManager } from './manager'
+import { Manager } from './manager'
 
-export interface ITransformedData {
+export interface TransformedData {
   id: string
   description: string
 
@@ -11,9 +11,7 @@ export interface ITransformedData {
   data: Array<[number, number]>
 }
 
-export const transformData: (
-  manager: IManager
-) => ITransformedData = manager => {
+export const transformData: (manager: Manager) => TransformedData = manager => {
   const data = [...manager.data].sort(([a], [b]) => b - a)
   const status = data[0]?.[1].status ?? Status.Unknown
 

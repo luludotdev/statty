@@ -2,11 +2,11 @@ import clsx from 'clsx'
 import { FC } from 'react'
 import { COLOUR_GREEN, COLOUR_ORANGE, COLOUR_RED } from '~constants'
 
-interface IProps {
+interface Props {
   colour: 'green' | 'orange' | 'red'
 }
 
-export const Notice: FC<IProps> = ({ colour, children }) => (
+export const Notice: FC<Props> = ({ colour, children }) => (
   <div className={clsx('notice', `notice-${colour}`)}>
     {children}
 

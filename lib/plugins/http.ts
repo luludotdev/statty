@@ -3,22 +3,22 @@ import { name as pkgName, version as pkgVersion } from '~utils/pkg'
 import { createFactory, DEFAULT_LATENCY_LIMIT, UNKNOWN_LATENCY } from './base'
 import { Status } from './types'
 
-interface IHttpOptions {
-  statusCodes?: IStatusCode[]
+interface HttpOptions {
+  statusCodes?: StatusCode[]
 }
 
-interface IStatusCode {
+interface StatusCode {
   code: number | ((code: number) => boolean)
   status: Status
 }
 
-const defaultStatusCodes: IStatusCode[] = [
+const defaultStatusCodes: StatusCode[] = [
   { code: code => code >= 200 && code < 400, status: Status.Operational },
   { code: code => code >= 400 && code < 500, status: Status.Degraded },
   { code: code => code >= 500 && code <= 599, status: Status.Unreachable },
 ]
 
-const resolveStatusCode: (status: number, codes: IStatusCode[]) => Status = (
+const resolveStatusCode: (status: number, codes: StatusCode[]) => Status = (
   status,
   codes
 ) => {
@@ -34,7 +34,7 @@ const resolveStatusCode: (status: number, codes: IStatusCode[]) => Status = (
   return Status.Unknown
 }
 
-export const httpFactory = createFactory<IHttpOptions>('http', options => ({
+export const httpFactory = createFactory<HttpOptions>('http', options => ({
   type: 'http',
   id: options.id,
   target: options.target,

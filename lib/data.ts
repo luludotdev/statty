@@ -1,14 +1,14 @@
 import { getManagers } from '~loader'
-import { ITransformedData, transformData } from '~managers'
+import { transformData, TransformedData } from '~managers'
 
-export const fetchData: () => Promise<ITransformedData[]> = async () => {
+export const fetchData: () => Promise<TransformedData[]> = async () => {
   const managers = await getManagers()
   return [...managers.values()].map(x => transformData(x))
 }
 
 export const fetchDataSingle: (
   manager: string
-) => Promise<ITransformedData | undefined> = async name => {
+) => Promise<TransformedData | undefined> = async name => {
   const managers = await getManagers()
   const manager = managers.get(name)
 

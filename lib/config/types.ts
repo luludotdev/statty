@@ -1,9 +1,9 @@
-export interface IConfig {
-  instance: IInstance
-  services: IService[]
+export interface Config {
+  instance: Instance
+  services: Service[]
 }
 
-export interface IInstance {
+export interface Instance {
   name: string
   canonicalURL?: string
 
@@ -11,17 +11,17 @@ export interface IInstance {
   evictTime?: string
   delayFactor?: number
 
-  alerts?: IAlert
+  alerts?: Alert
 }
 
-export interface IAlert {
+export interface Alert {
   webhooks: string[]
 
   unhealthyCount?: number
   healthyCount?: number
 }
 
-export interface IService {
+export interface Service {
   [key: string]: unknown
 
   id: string

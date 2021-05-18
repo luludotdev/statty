@@ -1,31 +1,31 @@
 import ms from 'ms'
 import { schedule } from 'node-cron'
 import { config as readConfig } from '~config'
-import { IPlugin, IPluginReponse } from '~plugins'
+import { Plugin, PluginReponse } from '~plugins'
 import { sleep } from '~utils/sleep'
 import { runAlerts } from './alerts'
 import { evictData, loadData, saveData } from './persistence'
 import { readUptime, saveUptime } from './uptime'
 
-type ManagerData = Map<number, IPluginReponse>
+type ManagerData = Map<number, PluginReponse>
 
-interface IManagerOptions {
+interface ManagerOptions {
   crontab?: string
   evictTime?: string
   delay?: number
   sendAlerts?: boolean
 }
 
-export interface IManager {
-  plugin: IPlugin
+export interface Manager {
+  plugin: Plugin
   data: ManagerData
   uptimeRef: { uptime: number }
 }
 
 export const createManager: (
-  plugin: IPlugin,
-  options?: IManagerOptions
-) => Promise<IManager> = async (plugin, options) => {
+  plugin: Plugin,
+  options?: ManagerOptions
+) => Promise<Manager> = async (plugin, options) => {
   const config = await readConfig()
 
   const crontab = options?.crontab ?? '* * * * *'

@@ -1,12 +1,12 @@
-import { IInstance, config as readConfig } from '~config'
-import { createManager, IManager } from '~managers'
+import { Instance, config as readConfig } from '~config'
+import { createManager, Manager } from '~managers'
 import { awaitRedis } from '~redis'
 import { resolvePlugin } from './resolvePlugin'
 
 let setup = false
 let isSettingUp = false
-let instance: IInstance | undefined
-const managers: Map<string, IManager> = new Map()
+let instance: Instance | undefined
+const managers: Map<string, Manager> = new Map()
 
 export const loadConfig: () => Promise<void> = async () => {
   if (setup === true) return
@@ -47,12 +47,14 @@ export const loadConfig: () => Promise<void> = async () => {
   /* eslint-enable no-await-in-loop */
 }
 
-export const getInstance: () => Promise<IInstance> = async () => {
+export const getInstance: () => Promise<Instance> = async () => {
   await loadConfig()
-  return instance!
+
+  if (!instance) throw new Error('Null Instance')
+  return instance
 }
 
-export const getManagers: () => Promise<Map<string, IManager>> = async () => {
+export const getManagers: () => Promise<Map<string, Manager>> = async () => {
   await loadConfig()
   return managers
 }

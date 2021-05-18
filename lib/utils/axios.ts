@@ -1,4 +1,4 @@
-import Axios, { AxiosError, AxiosRequestConfig } from 'axios'
+import Axios, { AxiosError } from 'axios'
 import { IncomingMessage } from 'http'
 import absoluteUrl from 'next-absolute-url'
 import { IS_SERVER } from '~env'

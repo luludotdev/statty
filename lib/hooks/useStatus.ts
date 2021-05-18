@@ -1,8 +1,8 @@
 import { useMemo } from 'react'
-import { ITransformedData } from '~managers'
+import { TransformedData } from '~managers'
 import { Status } from '~plugins/types'
 
-export const useStatus = (stats: ITransformedData[]) => {
+export const useStatus = (stats: TransformedData[]) => {
   const hasSevere = useMemo(() => {
     return stats.some(x => x.status === Status.Unreachable)
   }, [stats])

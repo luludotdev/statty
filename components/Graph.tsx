@@ -2,7 +2,7 @@ import ms from 'ms'
 import { FC, useMemo } from 'react'
 import * as Recharts from 'recharts'
 import { useMediaQuery } from '~hooks/useMediaQuery'
-import { ITransformedData } from '~managers'
+import { TransformedData } from '~managers'
 
 const {
   Area,
@@ -16,12 +16,12 @@ const {
   YAxis,
 } = Recharts
 
-interface IProps {
-  limit: ITransformedData['limit']
-  data: ITransformedData['data']
+interface Props {
+  limit: TransformedData['limit']
+  data: TransformedData['data']
 }
 
-export const Graph: FC<IProps> = ({ data, limit }) => {
+export const Graph: FC<Props> = ({ data, limit }) => {
   const isSmallScreen = useMediaQuery('(max-width: 500px)')
 
   const transformed = useMemo(() => {
@@ -110,7 +110,7 @@ export const Graph: FC<IProps> = ({ data, limit }) => {
             <YAxis
               dataKey='latency'
               tickLine={false}
-              tickFormatter={tick => (tick === 0 ? '' : ms(tick))}
+              tickFormatter={(tick: number) => (tick === 0 ? '' : ms(tick))}
               tick={tick}
               axisLine={false}
               type='number'
@@ -132,7 +132,7 @@ export const Graph: FC<IProps> = ({ data, limit }) => {
             }}
             label='DAB'
             separator=': '
-            labelFormatter={v => {
+            labelFormatter={(v: string | number) => {
               const time = typeof v === 'number' ? v : Number.parseInt(v, 10)
               return `${ms(now - time)} ago`
             }}

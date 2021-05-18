@@ -6,14 +6,14 @@ import {
   STATUS_UNKNOWN,
 } from '~constants'
 import { useStatus } from '~hooks/useStatus'
-import { ITransformedData } from '~managers'
+import { TransformedData } from '~managers'
 import { Notice } from './Notice'
 
-interface IProps {
-  stats: ITransformedData[]
+interface Props {
+  stats: TransformedData[]
 }
 
-export const Incidents: FC<IProps> = ({ stats }) => {
+export const Incidents: FC<Props> = ({ stats }) => {
   const { hasSevere, hasDegraded, hasUnknown, hasNone } = useStatus(stats)
 
   const worstSeverity = hasSevere

@@ -1,6 +1,6 @@
 import { Status } from './types'
 
-export interface IPluginReponse {
+export interface PluginReponse {
   /**
    * Latency to target (in millis)
    */
@@ -12,7 +12,7 @@ export interface IPluginReponse {
   status: Status
 }
 
-export interface IPlugin {
+export interface Plugin {
   type: string
   target: string
   limit: number
@@ -20,10 +20,10 @@ export interface IPlugin {
   id: string
   description: () => string
 
-  run: () => IPluginReponse | Promise<IPluginReponse>
+  run: () => PluginReponse | Promise<PluginReponse>
 }
 
-export interface IPluginOptions {
+export interface PluginOptions {
   /**
    * Plugin target
    */
@@ -53,16 +53,16 @@ export const IS_FACTORY = Symbol('isFactory')
 export const DEFAULT_LATENCY_LIMIT = 1000
 export const UNKNOWN_LATENCY = 0
 
-export interface IPluginFactory<T = Record<string, unknown>> {
+export interface PluginFactory<T = Record<string, unknown>> {
   type: string
   isFactory: symbol
 
-  (options: IPluginOptions & T): IPlugin
+  (options: PluginOptions & T): Plugin
 }
 
 export const createFactory: <T>(
   type: string,
-  factory: (options: IPluginOptions & T) => IPlugin
-) => IPluginFactory<T> = (type, factory) => {
+  factory: (options: PluginOptions & T) => Plugin
+) => PluginFactory<T> = (type, factory) => {
   return Object.assign(factory, { type, isFactory: IS_FACTORY })
 }

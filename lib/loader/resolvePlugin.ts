@@ -1,18 +1,17 @@
 import * as plugins from '~plugins'
-import type { IPluginFactory } from '~plugins'
+import type { PluginFactory } from '~plugins'
 
-export const resolvePlugin: (
-  type: string
-) => IPluginFactory | undefined = type_ => {
-  const imports: unknown[] = Object.values(plugins)
-
-  // @ts-expect-error
-  const factories: IPluginFactory[] = imports.filter(factory => {
-    if (typeof factory !== 'function') return false
+export const resolvePlugin: (type: string) => PluginFactory | undefined =
+  type_ => {
+    const imports: unknown[] = Object.values(plugins)
 
     // @ts-expect-error
-    return factory.isFactory === plugins.IS_FACTORY
-  })
+    const factories: PluginFactory[] = imports.filter(factory => {
+      if (typeof factory !== 'function') return false
 
-  return factories.find(({ type }) => type === type_)
-}
+      // @ts-expect-error
+      return factory.isFactory === plugins.IS_FACTORY
+    })
+
+    return factories.find(({ type }) => type === type_)
+  }

@@ -1,4 +1,4 @@
-export type { IPlugin, IPluginReponse, IPluginFactory } from './base'
+export type { Plugin, PluginReponse, PluginFactory } from './base'
 
 export { IS_FACTORY } from './base'
 export { httpFactory } from './http'

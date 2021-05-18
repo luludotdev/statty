@@ -1,17 +1,17 @@
 import Head from 'next/head'
 import { FC } from 'react'
 
-interface IRequiredProps {
+interface RequiredProps {
   siteName: string
 }
 
-interface IOptionalProps {
+interface OptionalProps {
   description: string
   image: string
   colour: string
 }
 
-export const Meta: FC<IRequiredProps & Partial<IOptionalProps>> = ({
+export const Meta: FC<RequiredProps & Partial<OptionalProps>> = ({
   siteName,
   description,
   image,

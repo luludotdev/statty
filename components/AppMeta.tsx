@@ -9,15 +9,15 @@ import {
   STATUS_UNKNOWN,
 } from '~constants'
 import { useStatus } from '~hooks/useStatus'
-import { ITransformedData } from '~managers'
+import { TransformedData } from '~managers'
 import { Meta } from './Meta'
 
-interface IProps {
+interface Props {
   siteName: string
-  stats: ITransformedData[]
+  stats: TransformedData[]
 }
 
-export const AppMeta: FC<IProps> = ({ siteName, stats }) => {
+export const AppMeta: FC<Props> = ({ siteName, stats }) => {
   const { hasSevere, hasDegraded, hasUnknown, hasNone } = useStatus(stats)
 
   const description = hasSevere
