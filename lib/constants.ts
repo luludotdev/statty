@@ -1,15 +1,15 @@
 export const NOTICE_COLOURS = Object.freeze({
   red: {
     light: '#ffb3b3',
-    dark: '',
+    dark: '#f79898',
   },
   orange: {
     light: '#ffdfb3',
-    dark: '',
+    dark: '#ffcc85',
   },
   green: {
     light: '#b3ffb3',
-    dark: '',
+    dark: '#8aec8a',
   },
 })
 
