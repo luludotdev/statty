@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import { COLOUR_GREEN, COLOUR_ORANGE, COLOUR_RED } from '~constants'
+import { NOTICE_COLOURS } from '~constants'
 import type { FC } from 'react'
 
 interface Props {
@@ -25,13 +25,13 @@ export const Notice: FC<Props> = ({ colour, children }) => (
               margin-bottom 0
 
           &.notice-green
-            background-color ${COLOUR_GREEN}
+            background-color ${NOTICE_COLOURS.green.light}
 
           &.notice-orange
-            background-color ${COLOUR_ORANGE}
+            background-color ${NOTICE_COLOURS.orange.light}
 
           &.notice-red
-            background-color ${COLOUR_RED}
+            background-color ${NOTICE_COLOURS.red.light}
       `}
     </style>
   </div>

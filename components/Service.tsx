@@ -1,5 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import clsx from 'clsx'
+import { ICON_COLOURS } from '~constants'
 import type { TransformedData } from '~managers'
 import { Status } from '~plugins/types'
 import { Graph } from './Graph'
@@ -64,16 +65,16 @@ export const Service: FC<TransformedData> = ({
               margin-right 0.5em
 
             &.service-operational .icon
-              color #2ecc40
+              color ${ICON_COLOURS.green.light}
 
             &.service-degraded .icon
-              color #ff851b
+              color ${ICON_COLOURS.orange.light}
 
             &.service-unreachable .icon
-              color #ff4136
+              color ${ICON_COLOURS.red.light}
 
             &.service-unknown .icon
-              color #888
+              color ${ICON_COLOURS.grey.light}
         `}
       </style>
 
