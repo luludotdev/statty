@@ -17,6 +17,9 @@ export const Notice: FC<Props> = ({ colour, children }) => (
           padding 1rem
           border-radius 0.25rem
 
+          :global(.dark) &
+            color black
+
           & :global(p)
             margin 0
             margin-bottom 0.25rem
@@ -27,11 +30,20 @@ export const Notice: FC<Props> = ({ colour, children }) => (
           &.notice-green
             background-color ${NOTICE_COLOURS.green.light}
 
+            :global(.dark) &
+              background-color ${NOTICE_COLOURS.green.dark}
+
           &.notice-orange
             background-color ${NOTICE_COLOURS.orange.light}
 
+            :global(.dark) &
+              background-color ${NOTICE_COLOURS.orange.dark}
+
           &.notice-red
-            background-color ${NOTICE_COLOURS.red.light}
+              background-color ${NOTICE_COLOURS.red.light}
+
+            :global(.dark) &
+              background-color ${NOTICE_COLOURS.red.dark}
       `}
     </style>
   </div>

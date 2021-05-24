@@ -67,14 +67,26 @@ export const Service: FC<TransformedData> = ({
             &.service-operational .icon
               color ${ICON_COLOURS.green.light}
 
+              :global(.dark) &
+                color ${ICON_COLOURS.green.dark}
+
             &.service-degraded .icon
               color ${ICON_COLOURS.orange.light}
+
+              :global(.dark) &
+                color ${ICON_COLOURS.orange.dark}
 
             &.service-unreachable .icon
               color ${ICON_COLOURS.red.light}
 
+              :global(.dark) &
+                color ${ICON_COLOURS.red.dark}
+
             &.service-unknown .icon
               color ${ICON_COLOURS.grey.light}
+
+              :global(.dark) &
+                color ${ICON_COLOURS.grey.dark}
         `}
       </style>
 
