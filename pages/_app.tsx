@@ -28,6 +28,7 @@ const NextApp = ({ Component, pageProps }: AppProps) => (
         body
           margin 0
           padding 2rem
+          padding-bottom 0
           font 16px/1.5 system-ui, sans-serif
       `}
     </style>

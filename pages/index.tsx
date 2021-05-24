@@ -1,6 +1,7 @@
 import { GetServerSideProps, NextPage } from 'next'
 import type { Instance } from '~api/instance'
 import { AppMeta } from '~components/AppMeta'
+import { Footer } from '~components/Footer'
 import { Service } from '~components/Service'
 import { Incidents } from '~components/Status'
 import { fetchStats, useStats } from '~hooks/useStats'
@@ -35,6 +36,8 @@ const App: NextPage<Props> = ({ siteName, initialData }) => {
         {stats.map(x => (
           <Service key={x.id} {...x} />
         ))}
+
+        <Footer />
       </div>
     </>
   )
