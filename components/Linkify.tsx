@@ -11,6 +11,9 @@ export const Linkify: FC = ({ children }) => (
           color hsl(208, 87%, 43%)
           text-decoration none
 
+          :global(.dark) &
+            color hsl(207, 100%, 72%)
+
           &:hover
             text-decoration underline
       `}
