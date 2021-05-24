@@ -1,5 +1,5 @@
 import type { Alert } from '~config'
-import { COLOUR_GREEN, COLOUR_RED } from '~constants'
+import { NOTICE_COLOURS } from '~constants'
 import { getInstance } from '~loader'
 import { Status } from '~plugins'
 import type { Plugin } from '~plugins'
@@ -97,7 +97,10 @@ const buildPayload: (plugin: Plugin, status: Status) => Promise<Payload> =
       : `${canonicalURL}/`
 
     const title = `Service alert for \`${plugin.id}\``
-    const color = status === Status.Unreachable ? COLOUR_RED : COLOUR_GREEN
+    const color =
+      status === Status.Unreachable
+        ? NOTICE_COLOURS.red.light
+        : NOTICE_COLOURS.green.light
     const text =
       status === Status.Unreachable
         ? 'Service is unreachable!'

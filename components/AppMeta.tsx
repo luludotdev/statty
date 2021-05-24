@@ -1,7 +1,5 @@
 import {
-  COLOUR_GREEN,
-  COLOUR_ORANGE,
-  COLOUR_RED,
+  NOTICE_COLOURS,
   STATUS_DEGRADED,
   STATUS_OPERATIONAL,
   STATUS_OUTAGES,
@@ -31,11 +29,11 @@ export const AppMeta: FC<Props> = ({ siteName, stats }) => {
     : undefined
 
   const colour = hasSevere
-    ? COLOUR_RED
+    ? NOTICE_COLOURS.red.light
     : hasUnknown || hasDegraded
-    ? COLOUR_ORANGE
+    ? NOTICE_COLOURS.orange.light
     : hasNone
-    ? COLOUR_GREEN
+    ? NOTICE_COLOURS.green.light
     : undefined
 
   return <Meta siteName={siteName} description={description} colour={colour} />
