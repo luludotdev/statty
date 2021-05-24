@@ -1,4 +1,4 @@
-import ping from '@lolpants/pingman'
+import ping from 'pingman'
 import { HostType, resolveHost } from '~utils/ip'
 import { createFactory, DEFAULT_LATENCY_LIMIT, UNKNOWN_LATENCY } from './base'
 import { Status } from './types'

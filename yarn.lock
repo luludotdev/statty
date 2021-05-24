@@ -293,11 +293,6 @@
   resolved "https://registry.yarnpkg.com/@hapi/hoek/-/hoek-9.2.0.tgz#f3933a44e365864f4dad5db94158106d511e8131"
   integrity sha512-sqKVVVOe5ivCaXDWivIJYVSaEgdQK9ul7a4Kity5Iw7u9+wBAPbX1RMSnLLmp7O4Vzj0WOWwMAJsTL00xwaNug==
 
-"@lolpants/pingman@^1.0.6":
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/@lolpants/pingman/-/pingman-1.0.6.tgz#2cbf40a008f11e0f0f47500070d5987e08eee7a3"
-  integrity sha512-fFesnAGBCRqiIz0FtReF45xgsroRS8Pm9fMrwYgPlEq9mQSswadZ9e0C2XfcKB49Cy2tPXaDKF/qW6nYYZFmFg==
-
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/@mrmlnc/readdir-enhanced/-/readdir-enhanced-2.2.1.tgz#524af240d1a360527b730475ecfa1344aa540dde"
@@ -4350,6 +4345,11 @@ pify@^4.0.1:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/pify/-/pify-4.0.1.tgz#4b2cd25c50d598735c50292224fd8c6df41e3231"
   integrity sha512-uB80kBFb/tfd68bVleG9T5GGsGPjJrLAUpR5PZIrhBnIaRTQRjqdJSsIKkOP6OAIFbj7GOrcudc5pNjZ+geV2g==
+
+pingman@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/pingman/-/pingman-1.1.2.tgz#064c416cb8407d9aa19b234285cded2d9d9f9934"
+  integrity sha512-PIdFDUx5VNWbuiuBET37YtSM6AGPhewhyZcd8TAu6cMY/x8M6dTeThOiGuFJY8/u0bdME44eBTbPy0x7CgwhdA==
 
 pkg-dir@^2.0.0:
   version "2.0.0"
