@@ -26,7 +26,7 @@ export interface Manager {
 export const createManager: (
   plugin: Plugin,
   options?: ManagerOptions
-) => Promise<Manager> = async (plugin, options) => {
+) => Promise<Readonly<Manager>> = async (plugin, options) => {
   const config = await readConfig()
 
   const crontab = options?.crontab ?? '* * * * *'
@@ -73,10 +73,10 @@ export const createManager: (
   const _task = schedule(crontab, _readData)
   void _evictOldData()
 
-  return {
+  return Object.freeze({
     _task,
     plugin,
     data,
     uptimeRef,
-  }
+  })
 }

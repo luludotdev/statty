@@ -62,7 +62,7 @@ export interface PluginFactory<T = Record<string, unknown>> {
 
 export const createFactory: <T>(
   type: string,
-  factory: (options: PluginOptions & T) => Plugin
+  factory: (options: PluginOptions & T) => Readonly<Plugin>
 ) => PluginFactory<T> = (type, factory) => {
-  return Object.assign(factory, { type, isFactory: IS_FACTORY })
+  return Object.freeze(Object.assign(factory, { type, isFactory: IS_FACTORY }))
 }
