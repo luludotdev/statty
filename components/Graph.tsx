@@ -1,4 +1,5 @@
 import ms from 'ms'
+import { useTheme } from 'next-themes'
 import { useMemo } from 'react'
 import * as Recharts from 'recharts'
 import { useMediaQuery } from '~hooks/useMediaQuery'
@@ -28,6 +29,12 @@ export const Graph: FC<Props> = ({ data, limit }) => {
   const transformed = useMemo(() => {
     return data.map(([timestamp, latency]) => ({ timestamp, latency }))
   }, [data])
+
+  const { theme, systemTheme } = useTheme()
+  const isDark = useMemo(
+    () => theme === 'dark' || systemTheme === 'dark',
+    [theme, systemTheme]
+  )
 
   if (transformed.length === 0) {
     return <div className='graph-placeholder' />
@@ -90,6 +97,9 @@ export const Graph: FC<Props> = ({ data, limit }) => {
             line-height 1.25
             background-color white
 
+            :global(.dark) &
+              color black
+
             & li
               color inherit !important
         `}
@@ -149,8 +159,8 @@ export const Graph: FC<Props> = ({ data, limit }) => {
             type='monotone'
             dataKey='latency'
             isAnimationActive={false}
-            fill='hsl(200, 100%, 85%)'
-            stroke='hsl(200, 100%, 55%)'
+            fill={isDark ? 'hsl(200, 53%, 29%)' : 'hsl(200, 100%, 85%)'}
+            stroke={isDark ? 'hsl(200, 100%, 55%)' : 'hsl(200, 100%, 55%)'}
           />
         </AreaChart>
       </ResponsiveContainer>
