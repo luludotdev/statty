@@ -8,6 +8,7 @@ export const Footer: FC = () => (
         margin-top 1.75rem
 
         & p
+          opacity 0.75
           margin 0
           font-size 0.75rem
           text-align center
