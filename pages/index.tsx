@@ -1,6 +1,7 @@
 import { GetServerSideProps, NextPage } from 'next'
 import type { Instance } from '~api/instance'
 import { AppMeta } from '~components/AppMeta'
+import { Favicon } from '~components/Favicon'
 import { Footer } from '~components/Footer'
 import { Service } from '~components/Service'
 import { Incidents } from '~components/Status'
@@ -28,6 +29,8 @@ const App: NextPage<Props> = ({ siteName, initialData }) => {
       `}</style>
 
       <AppMeta siteName={siteName} stats={stats} />
+
+      <Favicon stats={stats} />
 
       <div className='page'>
         <h1>{siteName}</h1>

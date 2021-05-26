@@ -37,3 +37,9 @@ export const STATUS_OPERATIONAL = 'All systems operational'
 export const STATUS_DEGRADED = 'Some services are experiencing outages'
 export const STATUS_OUTAGES = 'Some services are experiencing outages'
 export const STATUS_UNKNOWN = 'We are having trouble reaching some services'
+
+// Status Icons
+export const ICON_OPERATIONAL = '/operational.ico'
+export const ICON_DEGRADED = '/degraded.ico'
+export const ICON_OUTAGES = '/outages.ico'
+export const ICON_UNKNOWN = '/unknown.ico'
