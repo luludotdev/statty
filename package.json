@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "xo"
+    "lint": "xo",
+    "test": "yarn run lint"
   },
   "engines": {
     "node": ">=12.9"
