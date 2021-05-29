@@ -16,7 +16,7 @@ services:
       - 8080:3000
     volumes:
       # Mount config inside container
-      - ./config.yaml:/home/node/app/config.yaml:ro
+      - ./config.yaml:/app/config.yaml:ro
   redis:
     image: redis:alpine
     restart: always
