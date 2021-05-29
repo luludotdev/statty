@@ -1,8 +1,8 @@
 import Ajv from 'ajv'
+import type { ErrorObject } from 'ajv'
 import addFormats from 'ajv-formats'
 import { readFileSync } from 'fs'
 import type { Config } from './types'
-import type { ErrorObject } from 'ajv'
 
 const schemaData = readFileSync('./assets/config.schema.json', 'utf-8')
 const schema = JSON.parse(schemaData)

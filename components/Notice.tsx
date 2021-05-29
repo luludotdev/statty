@@ -1,6 +1,6 @@
 import clsx from 'clsx'
-import { NOTICE_COLOURS } from '~constants'
 import type { FC } from 'react'
+import { NOTICE_COLOURS } from '~constants'
 
 interface Props {
   colour: 'green' | 'orange' | 'red'

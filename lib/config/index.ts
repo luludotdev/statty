@@ -1,6 +1,6 @@
 import { readConfig } from './read'
-import { validateConfig } from './validate'
 import type { Config } from './types'
+import { validateConfig } from './validate'
 
 let configCache: Config | undefined
 

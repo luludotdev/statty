@@ -1,5 +1,5 @@
-import ReactLinkify from 'react-linkify-nofuzzy'
 import type { FC } from 'react'
+import ReactLinkify from 'react-linkify-nofuzzy'
 
 export const Linkify: FC = ({ children }) => (
   <ReactLinkify>

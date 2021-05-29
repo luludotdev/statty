@@ -1,9 +1,9 @@
-import useSWR from 'swr'
-import type { TransformedData } from '~managers'
-import { axios } from '~utils/axios'
 import type { IncomingMessage } from 'http'
+import useSWR from 'swr'
 import type { SWRResponse } from 'swr'
 import type { Except } from 'type-fest'
+import type { TransformedData } from '~managers'
+import { axios } from '~utils/axios'
 
 export const fetchStats: (
   request?: IncomingMessage

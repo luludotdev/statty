@@ -1,10 +1,10 @@
 import ms from 'ms'
 import { useTheme } from 'next-themes'
 import { useMemo } from 'react'
+import type { FC } from 'react'
 import * as Recharts from 'recharts'
 import { useMediaQuery } from '~hooks/useMediaQuery'
 import type { TransformedData } from '~managers'
-import type { FC } from 'react'
 
 const {
   Area,

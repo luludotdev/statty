@@ -1,3 +1,4 @@
+import type { FC } from 'react'
 import {
   NOTICE_COLOURS,
   STATUS_DEGRADED,
@@ -8,7 +9,6 @@ import {
 import { useStatus } from '~hooks/useStatus'
 import type { TransformedData } from '~managers'
 import { Meta } from './Meta'
-import type { FC } from 'react'
 
 interface Props {
   siteName: string

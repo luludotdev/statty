@@ -1,3 +1,4 @@
+import type { FC } from 'react'
 import {
   STATUS_DEGRADED,
   STATUS_OPERATIONAL,
@@ -7,7 +8,6 @@ import {
 import { useStatus } from '~hooks/useStatus'
 import type { TransformedData } from '~managers'
 import { Notice } from './Notice'
-import type { FC } from 'react'
 
 interface Props {
   stats: TransformedData[]
