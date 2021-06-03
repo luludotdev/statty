@@ -37,6 +37,9 @@ RUN adduser -S nextjs -u 1001
 RUN chown -R nextjs:nodejs /app/.next
 USER nextjs
 
+ARG GIT_REPO
+LABEL org.opencontainers.image.source=${GIT_REPO}
+
 EXPOSE 3000
 ENTRYPOINT ["/sbin/tini", "--"]
 CMD ["yarn", "run", "start"]
