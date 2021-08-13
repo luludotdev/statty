@@ -46,6 +46,7 @@
     "@types/node-cron": "^2.0.4",
     "@types/react": "^17.0.17",
     "babel-plugin-recharts": "^2.0.0",
+    "eslint-config-next": "^11.1.0",
     "eslint-config-xo-react": "^0.25.0",
     "eslint-plugin-react": "^7.24.0",
     "eslint-plugin-react-hooks": "^4.2.0",
