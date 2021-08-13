@@ -3,9 +3,10 @@ import type { TransformedData } from '~managers'
 import { Status } from '~plugins/types'
 
 export const useStatus = (stats: TransformedData[]) => {
-  const hasSevere = useMemo(() => {
-    return stats.some(x => x.status === Status.Unreachable)
-  }, [stats])
+  const hasSevere = useMemo(
+    () => stats.some(x => x.status === Status.Unreachable),
+    [stats]
+  )
 
   const hasDegraded = useMemo(
     () => stats.some(x => x.status === Status.Degraded),

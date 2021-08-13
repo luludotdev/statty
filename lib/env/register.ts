@@ -1,4 +1,5 @@
-/* eslint-disable no-redeclare */
+import process from 'process'
+
 function _string(name: string, required?: false): string | undefined
 function _string(name: string, required: true): string
 function _string(name: string, required: boolean): string | undefined

@@ -26,9 +26,10 @@ interface Props {
 export const Graph: FC<Props> = ({ data, limit }) => {
   const isSmallScreen = useMediaQuery('(max-width: 500px)')
 
-  const transformed = useMemo(() => {
-    return data.map(([timestamp, latency]) => ({ timestamp, latency }))
-  }, [data])
+  const transformed = useMemo(
+    () => data.map(([timestamp, latency]) => ({ timestamp, latency })),
+    [data]
+  )
 
   const { theme, systemTheme } = useTheme()
   const isDark = useMemo(
@@ -136,7 +137,7 @@ export const Graph: FC<Props> = ({ data, limit }) => {
 
           <Tooltip
             isAnimationActive={false}
-            formatter={(v: any) => {
+            formatter={(v: number | number[]) => {
               const value = Array.isArray(v) ? v[0] : v
               const string: string = value.toString()
               return `${string}ms`

@@ -18,7 +18,6 @@ export const fetchStats: (
 type Response = Except<SWRResponse<any, any>, 'data'>
 
 /* eslint-disable prettier/prettier */
-/* eslint-disable no-redeclare */
 export function useStats(): Response & { stats: TransformedData[] | undefined }
 export function useStats(initialData: TransformedData[]): Response & { stats: TransformedData[] }
 export function useStats(initialData?: TransformedData[]): Response & { stats: TransformedData[] | undefined } {
@@ -26,4 +25,3 @@ export function useStats(initialData?: TransformedData[]): Response & { stats: T
   return {...resp, stats: resp.data }
 }
 /* eslint-enable prettier/prettier */
-/* eslint-enable no-redeclare */

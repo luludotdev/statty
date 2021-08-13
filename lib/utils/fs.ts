@@ -6,7 +6,7 @@ interface FSError extends Error {
   code: string
 }
 
-// @ts-expect-error
+// @ts-expect-error Type Assertion
 const isFsError: (error: Error) => error is FSError = error =>
   'errno' in error && 'syscall' in error && 'code' in error
 

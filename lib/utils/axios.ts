@@ -21,11 +21,11 @@ if (IS_SERVER) {
   })
 }
 
-// @ts-expect-error
+// @ts-expect-error Type Assertion
 export const isAxiosError: (error: unknown) => error is AxiosError = error => {
   if (typeof error !== 'object') return false
   if (error === null) return false
 
-  // @ts-expect-error
+  // @ts-expect-error Property might not exist
   return error.isAxiosError === true
 }

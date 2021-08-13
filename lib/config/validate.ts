@@ -5,14 +5,14 @@ import { readFileSync } from 'fs'
 import type { Config } from './types'
 
 const schemaData = readFileSync('./assets/config.schema.json', 'utf-8')
-const schema = JSON.parse(schemaData)
+const schema = JSON.parse(schemaData) as Record<string, unknown>
 
 const ajv = new Ajv()
 addFormats(ajv)
 const validate = ajv.compile(schema)
 
-// @ts-expect-error
-const isValid: (object: any) => object is Config = object => {
+// @ts-expect-error Type Assertion
+const isValid: (object: unknown) => object is Config = object => {
   const valid = validate(object)
   return valid
 }
@@ -26,14 +26,16 @@ class ValidationError extends Error {
   }
 }
 
-export const validateConfig: (object: any) => Config = object => {
+export const validateConfig: (object: unknown) => Config = object => {
   const error = new Error('Invalid config!')
   if (typeof object !== 'object') throw error
   if (object === null) throw error
 
-  const valid = isValid(object)
-  if (valid === false) throw new ValidationError(validate.errors)
+  if (isValid(object)) {
+    // @ts-expect-error Schema key is untyped
+    delete object.$schema
+    return object
+  }
 
-  delete object.$schema
-  return object
+  throw new ValidationError(validate.errors)
 }

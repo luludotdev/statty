@@ -54,15 +54,14 @@ export const DEFAULT_LATENCY_LIMIT = 1000
 export const UNKNOWN_LATENCY = 0
 
 export interface PluginFactory<T = Record<string, unknown>> {
+  (options: PluginOptions & T): Plugin
+
   type: string
   isFactory: symbol
-
-  (options: PluginOptions & T): Plugin
 }
 
 export const createFactory: <T>(
   type: string,
   factory: (options: PluginOptions & T) => Readonly<Plugin>
-) => PluginFactory<T> = (type, factory) => {
-  return Object.freeze(Object.assign(factory, { type, isFactory: IS_FACTORY }))
-}
+) => PluginFactory<T> = (type, factory) =>
+  Object.freeze(Object.assign(factory, { type, isFactory: IS_FACTORY }))

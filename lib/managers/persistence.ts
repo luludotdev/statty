@@ -26,7 +26,10 @@ export const loadData: (
 
   const initialData: Array<[number, PluginReponse]> = Object.entries(
     rawData
-  ).map(([key, value]) => [Number.parseInt(key, 10), JSON.parse(value)])
+  ).map(([key, value]) => [
+    Number.parseInt(key, 10),
+    JSON.parse(value) as PluginReponse,
+  ])
 
   return initialData
 }
