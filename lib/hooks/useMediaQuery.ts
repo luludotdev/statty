@@ -14,10 +14,10 @@ const useMediaQueryClient = (query: string) => {
       setMatches(event.matches)
     }
 
-    mql.addListener(listener)
+    mql.addEventListener('change', listener)
 
     return () => {
-      mql.removeListener(listener)
+      mql.removeEventListener('change', listener)
     }
   }, [mql])
 
