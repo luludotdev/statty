@@ -1,11 +1,5 @@
-const modules = [
-  'read-pkg-up',
-  'read-pkg',
-]
-
-const withTM = require('next-transpile-modules')(modules)
-module.exports = withTM({
-  future: {
-    webpack5: true,
-  },
-})
+/** @type {import('next').NextConfig} */
+module.exports = {
+  reactStrictMode: true,
+  experimental: { esmExternals: true },
+}
