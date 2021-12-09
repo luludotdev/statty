@@ -15,7 +15,7 @@ export const fetchStats: (
   return resp.data
 }
 
-type Response = Except<SWRResponse<any, any>, 'data'>
+type Response = Except<SWRResponse, 'data'>
 
 /* eslint-disable prettier/prettier */
 export function useStats(): Response & { stats: TransformedData[] | undefined }

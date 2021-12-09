@@ -23,40 +23,44 @@ export const runAlerts: (
   if (status === Status.Unreachable) await isUnhealthy(plugin, injected)
 }
 
-const isHealthy: (plugin: Plugin, alerts: Required<Alert>) => Promise<void> =
-  async (plugin, alerts) => {
-    const key = redisKey(plugin, 'alerts')
+const isHealthy: (
+  plugin: Plugin,
+  alerts: Required<Alert>
+) => Promise<void> = async (plugin, alerts) => {
+  const key = redisKey(plugin, 'alerts')
 
-    const isSent = await redis.hget(key, 'sent')
-    if (isSent === null) return
+  const isSent = await redis.hget(key, 'sent')
+  if (isSent === null) return
 
-    const healthy = await redis.hincrby(key, 'healthy', 1)
-    if (healthy < alerts.healthyCount) return
+  const healthy = await redis.hincrby(key, 'healthy', 1)
+  if (healthy < alerts.healthyCount) return
 
-    await redis.del(key)
+  await redis.del(key)
 
-    const payload = await buildPayload(plugin, Status.Operational)
-    await sendAlerts(payload, ...alerts.webhooks)
-  }
+  const payload = await buildPayload(plugin, Status.Operational)
+  await sendAlerts(payload, ...alerts.webhooks)
+}
 
-const isUnhealthy: (plugin: Plugin, alerts: Required<Alert>) => Promise<void> =
-  async (plugin, alerts) => {
-    const key = redisKey(plugin, 'alerts')
+const isUnhealthy: (
+  plugin: Plugin,
+  alerts: Required<Alert>
+) => Promise<void> = async (plugin, alerts) => {
+  const key = redisKey(plugin, 'alerts')
 
-    const unhealthy = await redis.hincrby(key, 'unhealthy', 1)
-    if (unhealthy < alerts.unhealthyCount) return
+  const unhealthy = await redis.hincrby(key, 'unhealthy', 1)
+  if (unhealthy < alerts.unhealthyCount) return
 
-    const isSent = await redis.hget(key, 'sent')
-    if (isSent !== null) return
+  const isSent = await redis.hget(key, 'sent')
+  if (isSent !== null) return
 
-    const pipe = redis.pipeline()
-    pipe.hset(key, 'sent', 1)
-    pipe.hset(key, 'healthy', 0)
-    await pipe.exec()
+  const pipe = redis.pipeline()
+  pipe.hset(key, 'sent', 1)
+  pipe.hset(key, 'healthy', 0)
+  await pipe.exec()
 
-    const payload = await buildPayload(plugin, Status.Unreachable)
-    await sendAlerts(payload, ...alerts.webhooks)
-  }
+  const payload = await buildPayload(plugin, Status.Unreachable)
+  await sendAlerts(payload, ...alerts.webhooks)
+}
 
 interface Payload {
   username?: string
@@ -88,42 +92,44 @@ interface Field {
   short: boolean
 }
 
-const buildPayload: (plugin: Plugin, status: Status) => Promise<Payload> =
-  async (plugin, status) => {
-    const { canonicalURL, name } = await getInstance()
-    if (canonicalURL === undefined) throw new Error('Uh oh')
-    const baseURL = canonicalURL.endsWith('/')
-      ? canonicalURL
-      : `${canonicalURL}/`
+const buildPayload: (
+  plugin: Plugin,
+  status: Status
+) => Promise<Payload> = async (plugin, status) => {
+  const { canonicalURL, name } = await getInstance()
+  if (canonicalURL === undefined) throw new Error('Uh oh')
+  const baseURL = canonicalURL.endsWith('/') ? canonicalURL : `${canonicalURL}/`
 
-    const title = `Service alert for \`${plugin.id}\``
-    const color =
-      status === Status.Unreachable
-        ? NOTICE_COLOURS.red.light
-        : NOTICE_COLOURS.green.light
-    const text =
-      status === Status.Unreachable
-        ? 'Service is unreachable!'
-        : 'Service has resumed normal operation.'
+  const title = `Service alert for \`${plugin.id}\``
+  const color =
+    status === Status.Unreachable
+      ? NOTICE_COLOURS.red.light
+      : NOTICE_COLOURS.green.light
+  const text =
+    status === Status.Unreachable
+      ? 'Service is unreachable!'
+      : 'Service has resumed normal operation.'
 
-    const payload: Attachment = {
-      fallback: `**${title}**\n${text}`,
-      color,
+  const payload: Attachment = {
+    fallback: `**${title}**\n${text}`,
+    color,
 
-      title,
-      title_link: `${baseURL}#${plugin.id}`,
-      text,
+    title,
+    title_link: `${baseURL}#${plugin.id}`,
+    text,
 
-      ts: Math.floor(Date.now() / 1000),
-    }
-
-    return {
-      username: `${name} • Statty`,
-      attachments: [payload],
-    }
+    ts: Math.floor(Date.now() / 1000),
   }
 
-const sendAlerts: (payload: Payload, ...urls: string[]) => Promise<void> =
-  async (payload, ...urls) => {
-    await Promise.allSettled(urls.map(async url => axios.post(url, payload)))
+  return {
+    username: `${name} • Statty`,
+    attachments: [payload],
   }
+}
+
+const sendAlerts: (
+  payload: Payload,
+  ...urls: string[]
+) => Promise<void> = async (payload, ...urls) => {
+  await Promise.allSettled(urls.map(async url => axios.post(url, payload)))
+}

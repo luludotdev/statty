@@ -12,11 +12,13 @@ export const saveData: (
   await redis.hset(key, timestamp.toString(), JSON.stringify(data))
 }
 
-export const evictData: (plugin: Plugin, timestamp: number) => Promise<void> =
-  async (plugin, timestamp) => {
-    const key = redisKey(plugin, REDIS_KEY)
-    await redis.hdel(key, timestamp.toString())
-  }
+export const evictData: (
+  plugin: Plugin,
+  timestamp: number
+) => Promise<void> = async (plugin, timestamp) => {
+  const key = redisKey(plugin, REDIS_KEY)
+  await redis.hdel(key, timestamp.toString())
+}
 
 export const loadData: (
   plugin: Plugin
