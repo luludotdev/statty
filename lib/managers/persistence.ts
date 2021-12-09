@@ -26,12 +26,12 @@ export const loadData: (
   const key = redisKey(plugin, REDIS_KEY)
   const rawData = await redis.hgetall(key)
 
-  const initialData: Array<[number, PluginReponse]> = Object.entries(
+  const fallbackData: Array<[number, PluginReponse]> = Object.entries(
     rawData
   ).map(([key, value]) => [
     Number.parseInt(key, 10),
     JSON.parse(value) as PluginReponse,
   ])
 
-  return initialData
+  return fallbackData
 }

@@ -33,10 +33,10 @@ export const createManager: (
   const evictTime = ms(options?.evictTime ?? '61m')
   const sendAlerts = options?.sendAlerts ?? true
 
-  const initialData = await loadData(plugin)
+  const fallbackData = await loadData(plugin)
   const initialUptime = await readUptime(plugin)
 
-  const data: ManagerData = new Map(initialData)
+  const data: ManagerData = new Map(fallbackData)
   const uptimeRef = { uptime: initialUptime ?? 0 }
 
   const _evictOldData = async () => {

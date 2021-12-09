@@ -11,11 +11,11 @@ import { axios } from '~utils/axios'
 
 interface Props {
   siteName: string
-  initialData: TransformedData[]
+  fallbackData: TransformedData[]
 }
 
-const App: NextPage<Props> = ({ siteName, initialData }) => {
-  const { stats } = useStats(initialData)
+const App: NextPage<Props> = ({ siteName, fallbackData }) => {
+  const { stats } = useStats(fallbackData)
 
   return (
     <>
@@ -48,12 +48,12 @@ const App: NextPage<Props> = ({ siteName, initialData }) => {
 export const getServerSideProps: GetServerSideProps<Props> = async ({
   req,
 }) => {
-  const [resp, initialData] = await Promise.all([
+  const [resp, fallbackData] = await Promise.all([
     axios.get<Instance>('/api/instance', { _req: req }),
     fetchStats(req),
   ])
 
-  return { props: { siteName: resp.data.name, initialData } }
+  return { props: { siteName: resp.data.name, fallbackData } }
 }
 
 export default App

@@ -19,9 +19,9 @@ type Response = Except<SWRResponse, 'data'>
 
 /* eslint-disable prettier/prettier */
 export function useStats(): Response & { stats: TransformedData[] | undefined }
-export function useStats(initialData: TransformedData[]): Response & { stats: TransformedData[] }
-export function useStats(initialData?: TransformedData[]): Response & { stats: TransformedData[] | undefined } {
-  const resp = useSWR('/stats', fetchStats, { initialData, refreshInterval: 1000 * 15 })
+export function useStats(fallbackData: TransformedData[]): Response & { stats: TransformedData[] }
+export function useStats(fallbackData?: TransformedData[]): Response & { stats: TransformedData[] | undefined } {
+  const resp = useSWR('/stats', fetchStats, { fallbackData, refreshInterval: 1000 * 15 })
   return {...resp, stats: resp.data }
 }
 /* eslint-enable prettier/prettier */
