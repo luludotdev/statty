@@ -9,6 +9,7 @@
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
+    "incremental": true,
     "downlevelIteration": true,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
