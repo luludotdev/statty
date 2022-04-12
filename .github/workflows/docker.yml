@@ -6,10 +6,10 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [14.x]
+        node-version: [16.x]
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
@@ -29,7 +29,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Prepare
         id: prepare
         run: |
@@ -70,7 +70,9 @@ jobs:
         with:
           context: .
           push: ${{ (github.ref == 'refs/heads/master') || (contains(github.ref, 'refs/tags/') == true) }}
-          tags: ${{ steps.prepare.outputs.docker_image }}:${{ steps.prepare.outputs.version }}
+          tags: |
+            ${{ steps.prepare.outputs.docker_image }}:latest
+            ${{ steps.prepare.outputs.docker_image }}:${{ steps.prepare.outputs.version }}
           build-args: GIT_REPO=${{ steps.prepare.outputs.git_repo }}
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache-new
