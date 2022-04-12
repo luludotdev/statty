@@ -22,7 +22,7 @@ export const saveUptime: (
       : '0'
 
   const key = redisKey(plugin, REDIS_KEY)
-  await redis.send_command('BITFIELD', key, 'SET', 'u2', `#${minute}`, isUp)
+  await redis.bitfield(key, 'SET', 'u2', `#${minute}`, isUp)
 }
 
 export const readUptime: (

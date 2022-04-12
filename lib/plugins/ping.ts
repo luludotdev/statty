@@ -10,7 +10,7 @@ export const pingFactory = createFactory('ping', options => ({
   limit: options.latencyLimit ?? DEFAULT_LATENCY_LIMIT,
   description: () => options.description ?? `ping \`${options.target}\``,
 
-  run: async () => {
+  async run() {
     const hostType = resolveHost(options.target)
     const ipv6 = hostType === HostType.IPv6
 

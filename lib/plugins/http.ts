@@ -41,7 +41,7 @@ export const httpFactory = createFactory<HttpOptions>('http', options => ({
   limit: options.latencyLimit ?? DEFAULT_LATENCY_LIMIT,
   description: () => options.description ?? options.target,
 
-  run: async () => {
+  async run() {
     const userStatusCodes = options.statusCodes ?? []
     const statusCodes = [...userStatusCodes, ...defaultStatusCodes]
 

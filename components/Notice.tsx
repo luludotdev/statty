@@ -1,12 +1,12 @@
 import clsx from 'clsx'
-import type { FC } from 'react'
+import type { FC, PropsWithChildren } from 'react'
 import { NOTICE_COLOURS } from '~constants'
 
 interface Props {
   colour: 'green' | 'orange' | 'red'
 }
 
-export const Notice: FC<Props> = ({ colour, children }) => (
+export const Notice: FC<PropsWithChildren<Props>> = ({ colour, children }) => (
   <div className={clsx('notice', `notice-${colour}`)}>
     {children}
 

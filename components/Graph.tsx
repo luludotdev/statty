@@ -5,6 +5,7 @@ import type { FC } from 'react'
 import * as Recharts from 'recharts'
 import { useMediaQuery } from '~hooks/useMediaQuery'
 import type { TransformedData } from '~managers'
+import '../next-themes.d.ts'
 
 const {
   Area,
